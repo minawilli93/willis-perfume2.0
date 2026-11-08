@@ -1,122 +1,457 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://willis-perfume.vercel.app/</loc>
+    <loc>https://willis-perfume-one.vercel.app/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/collection.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/collection.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/featured.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/featured.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/contact.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/contact.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/pink-crush.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/white-code.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/cedar-way.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/fortune-rush.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/tropical-veil.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/pink-crush.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/iris-noir.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/cedar-way.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/citrus-ink.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/tropical-veil.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/urban-pulse.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/iris-noir.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/velvet-muse.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/citrus-ink.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/noir-reserve.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/urban-pulse.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/woody-pulse.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/velvet-muse.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/milky-amber.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/noir-reserve.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/fresh-orchard.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/woody-pulse.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/saffron-flame.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/milky-amber.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/silk-veil.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/fresh-orchard.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/musk-aura.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/saffron-flame.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/golden-bloom.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/silk-veil.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/solar-glow.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/musk-aura.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/sandal-rush.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/golden-bloom.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/green-sprint.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/solar-glow.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/aqua-drive.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/amber-ray.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://willis-perfume.vercel.app/products/blush-aura.html</loc>
+    <loc>https://willis-perfume-one.vercel.app/products/sandal-rush.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/berry-cloud.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/heavenly-bloom.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/aqua-drive.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/blush-aura.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/incense-crown.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/passion-oud.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/golden-heat.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/smoked-code.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/royal-ember.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/pink-cream.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/amber-petal.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/crimson-bloom.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/violet-pepper.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/rum-leather.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/lotus-breeze.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/oud-crown.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/mocha-night.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/basil-mist.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/spice-leaf.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/obsidian-amber.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/toffee-suede.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/peach-garden.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/dark-wood.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/pear-drop.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/silver-sage.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/pineapple-king.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/vanilla-haze.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/raspberry-moon.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/wild-magnolia.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/coconut-milk.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/ocean-fruit.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/star-anise.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/desert-wind.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/chestnut-dream.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/rosemary-hill.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/pure-orchid.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/orange-sun.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/mandarin-sky.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/cinnamon-apple.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/snow-flower.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/sugar-lily.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/sweet-rose.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/black-jasmine.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/green-sprint.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/ginger-fire.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/honey-tobacco.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/love-potion.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/candy-pop.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/ebony-gold.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/verbena-trail.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/cool-mint.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/almond-praline.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/peony-charm.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/marshmallow-whip.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/scarlet-whisper.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/bourbon-plush.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/chocolate-shadow.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/tonka-spell.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/cherry-glaze.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/green-pine.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/smooth-vetiver.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/whiskey-cacao.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/tuberose-rain.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/caramel-cognac.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/frozen-oak.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/smoke-nectar.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://willis-perfume-one.vercel.app/products/coco-blossom.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

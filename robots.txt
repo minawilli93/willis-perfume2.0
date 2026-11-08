@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Let Google / Bing read the sitemap
-Sitemap: https://willis-perfume.vercel.app/sitemap.xml
+Sitemap: https://willis-perfume-one.vercel.app/sitemap.xml

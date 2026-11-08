@@ -26,7 +26,7 @@ try {
   console.warn("⚠ site-config.js not readable — using defaults:", e.message);
 }
 
-const SITE_URL = process.env.SITE_URL || SITE_CONFIG.siteUrl || "https://willis-perfume.vercel.app";
+const SITE_URL = process.env.SITE_URL || SITE_CONFIG.siteUrl || "https://willis-perfume-one.vercel.app";
 
 const data = JSON.parse(fs.readFileSync(DATA_PATH, "utf8"));
 
@@ -184,7 +184,7 @@ function headHTML(product) {
   <meta name="twitter:image" content="${image}" />
 
   <script src="../site-config.js"><\/script>
-  <script>window.BASE_PATH = "../"; window.SITE_URL = (window.SITE_CONFIG && window.SITE_CONFIG.siteUrl) || "https://willis-perfume.vercel.app";<\/script>
+  <script>window.BASE_PATH = "../"; window.SITE_URL = (window.SITE_CONFIG && window.SITE_CONFIG.siteUrl) || "https://willis-perfume-one.vercel.app";<\/script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -263,7 +263,7 @@ function listHeadHTML(mode) {
   <meta name="twitter:image" content="${image}" />
 
   <script src="site-config.js"><\/script>
-  <script>window.BASE_PATH = ""; window.SITE_URL = (window.SITE_CONFIG && window.SITE_CONFIG.siteUrl) || "https://willis-perfume.vercel.app";<\/script>
+  <script>window.BASE_PATH = ""; window.SITE_URL = (window.SITE_CONFIG && window.SITE_CONFIG.siteUrl) || "https://willis-perfume-one.vercel.app";<\/script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

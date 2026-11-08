@@ -2500,11 +2500,13 @@ a {
   background: linear-gradient(135deg, #bd9148, #8c6428);
   box-shadow: 0 8px 18px rgba(125, 89, 32, .18);
   cursor: pointer;
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  line-height: 1.25;
+  padding: 5px 8px;
 }
 
 @media (max-width: 699px) {
@@ -2659,8 +2661,8 @@ a {
 
 /* ---------- Card add-to-cart polish ---------- */
 .add-to-cart span {
-  font-size: 15px;
-  line-height: 0;
+  font-size: 14px;
+  line-height: 1;
 }
 
 .add-to-cart:disabled {

@@ -17,8 +17,8 @@
               e.g. "201012345678"
    ============================================================ */
 window.SITE_CONFIG = {
-  siteUrl: "https://willis-perfume.vercel.app",
-  ga4Id: "G-DGXZZQQ8DP",
+  siteUrl: "https://willis-perfume-one.vercel.app",
+  ga4Id: "G-XXXXXXXXXX",
   pixelId: "1234567890123456",
   whatsapp: "201272566695"
 };
