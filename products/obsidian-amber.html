@@ -113,8 +113,12 @@
     })();
   </script>
 
-  <!-- META PIXEL — not initialized while the ID is still a placeholder -->
+  <!-- META PIXEL - loader and init are BOTH skipped while pixelId is still a placeholder -->
   <script>
+    (function () {
+      var cfg = window.SITE_CONFIG || {};
+      var id = cfg.pixelId;
+      if (!cfg.isAnalyticsReady || !cfg.isAnalyticsReady("pixelId")) return;
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -123,10 +127,6 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    (function () {
-      var cfg = window.SITE_CONFIG || {};
-      var id = cfg.pixelId;
-      if (!cfg.isAnalyticsReady || !cfg.isAnalyticsReady("pixelId")) return;
       fbq('init', id);
       fbq('track', 'PageView');
       var im = document.createElement("img");
