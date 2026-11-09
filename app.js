@@ -718,9 +718,9 @@ function buildProductDetail(product) {
 
     <h3 class="notes-title">${t("modal.notes")}</h3>
     <div class="notes-grid">
-      ${renderNoteCard(t("modal.notesTop"), notes.top)}
-      ${renderNoteCard(t("modal.notesHeart"), notes.heart)}
-      ${renderNoteCard(t("modal.notesBase"), notes.base)}
+      ${UNSPLIT_NOTE_PRODUCTS.has(product.id)
+        ? `<div class="note-card"><p>${(Array.isArray(notes.top) ? notes.top : []).map(escapeHTML).join("<br>") || t("modal.notListed")}</p></div>`
+        : renderNoteCard(t("modal.notesTop"), notes.top) + renderNoteCard(t("modal.notesHeart"), notes.heart) + renderNoteCard(t("modal.notesBase"), notes.base)}
     </div>
 
     ${available ? `<h3 class="size-title">${t("modal.chooseSize")}</h3>
@@ -752,6 +752,10 @@ function buildProductDetail(product) {
     ${recentSectionHTML(product)}
   `;
 }
+
+// Products whose source lists notes without a pyramid split: render one
+// generic card under the "Fragrance Notes" heading, never a Top/Heart/Base label.
+const UNSPLIT_NOTE_PRODUCTS = new Set(["midnight-blaze", "ruby-dune", "twilight-knight"]);
 
 function renderNoteCard(title, values) {
   const safeValues = Array.isArray(values) ? values : [];
