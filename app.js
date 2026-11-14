@@ -143,6 +143,13 @@ function getDefaultSize(product) {
   return sizes.includes("35ml") ? "35ml" : (sizes[0] || "35ml");
 }
 
+/* Smallest sellable size ("أصغر حجم") — basis for the card's Starts-from price. */
+function getSmallestSize(product) {
+  const sizes = Object.keys(product.sizes || {});
+  if (!sizes.length) return "35ml";
+  return sizes.slice().sort((a, b) => (parseInt(a, 10) || 0) - (parseInt(b, 10) || 0))[0];
+}
+
 function productInData(productId) {
   return state.products.some(product => product.id === productId);
 }
@@ -1372,8 +1379,8 @@ function filteredProducts() {
 }
 
 function productCardHTML(product) {
-  const size = getDefaultSize(product);
-  const price = Number(product.sizes?.[size] || 0).toLocaleString();
+  const startSize = getSmallestSize(product);
+  const startPrice = Number(product.sizes?.[startSize] || 0).toLocaleString();
   const available = isAvailable(product);
   const liked = inWishlist(product.id);
 
@@ -1410,10 +1417,9 @@ function productCardHTML(product) {
             <p class="inspired">${t("modal.inspired")} <strong>${escapeHTML(product.inspired_by)}</strong></p>
 
             <div class="card-actions">
-              <button class="view-details" type="button">${t("card.details")}</button>
               ${available
-                ? `<button class="add-to-cart" type="button" data-size="${size}">
-                     <span>+</span> ${t("card.addToCart")} — ${price} ${currency()}
+                ? `<button class="add-to-cart" type="button">
+                     <span>+</span> ${t("card.addToCartFrom", { price: startPrice })}
                    </button>`
                 : `<button class="add-to-cart" type="button" disabled>${t("stock.out")}</button>`}
             </div>
@@ -1932,13 +1938,13 @@ function handleCardClick(event) {
     return;
   }
 
+  /* Card CTA opens the size chooser (product modal); the actual
+     add-to-cart happens there after the customer picks a size. */
   const addButton = event.target.closest(".add-to-cart");
   if (addButton && !addButton.disabled) {
     const card = addButton.closest(".product-card");
     const product = card && state.products.find(p => p.id === card.dataset.productId);
-    if (product) {
-      addToCart(product, addButton.dataset.size || getDefaultSize(product));
-    }
+    if (product) openProductModal(product);
     return;
   }
 
@@ -2421,4 +2427,4 @@ if ("serviceWorker" in navigator && (typeof location === "undefined" || location
       console.warn("Service worker registration failed:", err);
     });
   });
-}
+    }
