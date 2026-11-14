@@ -1,0 +1,12 @@
+/* ============================================================
+   Mobile fit fixes — loaded after style.css (2026-11-14).
+   ============================================================ */
+
+/* 320px-class phones: the card "Details" button clipped its Arabic
+   label (التفاصيل) because the UA default padding ate the narrow
+   column. Tighten the padding so the label always fits. */
+@media (max-width: 699px) {
+  .card-actions .view-details {
+    padding-inline: 2px;
+  }
+}
