@@ -4447,3 +4447,187 @@ a.contact-card:hover {
   color: var(--gold-dark);
   border: 1px solid var(--gold-soft);
 }
+
+/* ============================================================
+   Occasion hero — "Choose your occasion" opening
+   (replaces the old split hero on the homepage)
+   ============================================================ */
+.occasion-hero {
+  display: block;
+  min-height: 0;
+  padding: 26px 18px 34px;
+}
+
+.occasion-intro {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.occasion-features {
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.occasion-intro h1 {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: clamp(40px, 9vw, 64px);
+}
+
+.occasion-intro p {
+  margin: 0 auto;
+}
+
+.occasion-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  max-width: 880px;
+  margin: 26px auto 0;
+}
+
+.occasion-card {
+  display: flex;
+  flex-direction: column;
+  background: #fffdf9;
+  border: 1px solid rgba(167, 122, 50, .22);
+  border-radius: 22px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 10px 28px rgba(60, 45, 20, .08);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.occasion-card:hover,
+.occasion-card:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px rgba(60, 45, 20, .14);
+}
+
+.occasion-media {
+  position: relative;
+  aspect-ratio: 5 / 5.6;
+  overflow: hidden;
+}
+
+.occasion-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.occasion-bottle {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  width: 37%;
+  transform: translateX(-50%);
+  animation: occasionFloat 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.occasion-card[data-occasion="evening"] .occasion-bottle {
+  animation-delay: -3s;
+}
+
+.occasion-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: 4%;
+  width: 38%;
+  height: 16px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(30, 22, 12, .38), transparent 68%);
+  border-radius: 50%;
+  animation: occasionShadow 6s ease-in-out infinite;
+}
+
+.occasion-card[data-occasion="evening"] .occasion-shadow {
+  animation-delay: -3s;
+}
+
+@keyframes occasionFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(-9px); }
+}
+
+@keyframes occasionShadow {
+  0%, 100% { transform: translateX(-50%) scaleX(1); opacity: .55; }
+  50%      { transform: translateX(-50%) scaleX(.82); opacity: .34; }
+}
+
+.occasion-info {
+  padding: 14px 12px 16px;
+  text-align: center;
+  background: linear-gradient(180deg, #fdfaf4, #f7f1e6);
+  border-top: 1px solid rgba(167, 122, 50, .14);
+}
+
+.occasion-info h2 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #26221c;
+}
+
+.occasion-info p {
+  margin: 4px 0 8px;
+  padding-inline: 10px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #6a6257;
+}
+
+.occasion-cta {
+  color: var(--gold-dark);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Active occasion chip inside the collection section */
+.occasion-active {
+  margin: 0 0 12px;
+}
+
+.occasion-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #b88a42, #8c6428);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.occasion-chip button {
+  border: 0;
+  background: rgba(255, 255, 255, .22);
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+@media (max-width: 360px) {
+  .occasion-grid { grid-template-columns: 1fr; }
+  .occasion-media { aspect-ratio: 5 / 4.4; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .occasion-bottle,
+  .occasion-shadow {
+    animation: none !important;
+  }
+}

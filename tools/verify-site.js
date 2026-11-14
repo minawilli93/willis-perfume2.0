@@ -124,7 +124,7 @@ const missingImages = data.flatMap(p => {
 check(`all product images exist (${data.length} products)`, missingImages.length === 0, missingImages.join(", "));
 
 const imageDir = path.join(ROOT, "images");
-const specialNames = new Set(["bottle", "logo", "og-image", "apple-touch-icon", "favicon-32x32", "leaf-gold-1", "leaf-gold-2", "leaf-gold-3", "icon-192", "icon-512"]);
+const specialNames = new Set(["bottle", "logo", "og-image", "apple-touch-icon", "favicon-32x32", "leaf-gold-1", "leaf-gold-2", "leaf-gold-3", "bottle-fresh", "bottle-bold", "occasion-everyday", "occasion-evening", "icon-192", "icon-512"]);
 const orphanImgs = fs.existsSync(imageDir)
   ? fs.readdirSync(imageDir)
       .filter(f => /\.(webp|png|jpg|jpeg)$/i.test(f))
