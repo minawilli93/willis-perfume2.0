@@ -95,6 +95,7 @@ const I18N = {
     "card.from": "From",
     "card.details": "Details",
     "card.addToCart": "Add to Cart",
+    "card.addToCartFrom": "Add to Cart - Starts from {price} EGP",
 
     "pwa.installTitle": "Install the app",
     "pwa.installText": "Open Willi's in full screen with offline support.",
@@ -364,6 +365,7 @@ const I18N = {
     "card.from": "يبدأ من",
     "card.details": "التفاصيل",
     "card.addToCart": "أضف للسلة",
+    "card.addToCartFrom": "أضف للسلة - يبدأ من {price} ج.م",
 
     "pwa.installTitle": "ثبّت التطبيق",
     "pwa.installText": "افتح متجر Willi's بشاشة كاملة واشتغل حتى بدون إنترنت.",
