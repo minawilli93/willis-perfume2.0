@@ -48,7 +48,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=17" />
+  <link rel="stylesheet" href="style.css?v=18" />
 
   <!-- ===== Structured data ===== -->
   <script type="application/ld+json">
@@ -79,7 +79,7 @@
        SITE CONFIG — single source of truth for domain / GA4 / Pixel / WhatsApp.
        Edit site-config.js, then run: node tools/generate-pages.js
        ====================================================================== -->
-  <script src="site-config.js?v=17"></script>
+  <script src="site-config.js?v=18"></script>
   <script>
     /* Apply the real site domain from SITE_CONFIG to canonical / OG / JSON-LD
        at runtime. Does nothing while siteUrl is still the placeholder. */
@@ -164,7 +164,7 @@
 
       <nav class="desktop-nav" aria-label="Main navigation">
         <a class="active" href="#home" data-i18n="nav.home">Home</a>
-        <a href="#featured" data-i18n="nav.featured">Most Requested</a>
+        <a href="#featured" data-i18n="nav.featured">Trending Now</a>
         <a href="#collection" data-i18n="nav.collection">Collection</a>
         <a href="#story" data-i18n="nav.about">About Us</a>
         <a href="contact.html" data-i18n="nav.contact">Contact</a>
@@ -202,7 +202,7 @@
       </div>
       <nav>
         <a href="#home" data-i18n="nav.home">Home</a>
-        <a href="#featured" data-i18n="nav.featured">Most Requested</a>
+        <a href="#featured" data-i18n="nav.featured">Trending Now</a>
         <a href="#collection" data-i18n="nav.collection">Our Collection</a>
         <button data-gender="Men" data-i18n="gender.men">Men</button>
         <button data-gender="Women" data-i18n="gender.women">Women</button>
@@ -260,11 +260,11 @@
         </div>
       </section>
 
-      <section class="featured-section hidden" id="featured" aria-label="Best sellers">
+      <section class="featured-section hidden" id="featured" aria-label="Trending fragrances">
         <div class="section-heading">
           <div>
             <span class="eyebrow" data-i18n="featured.eyebrow">CUSTOMER FAVORITES</span>
-            <h2 data-i18n="featured.title">Most Requested</h2>
+            <h2 data-i18n="featured.title">Trending Now</h2>
           </div>
           <a class="featured-view-all" href="featured.html" data-i18n="featured.viewAll">View all &rarr;</a>
         </div>
@@ -579,7 +579,7 @@
   <script>
     window.SITE_URL = (window.SITE_CONFIG && window.SITE_CONFIG.siteUrl) || "https://willis-perfume-one.vercel.app";
   </script>
-  <script src="i18n.js?v=17"></script>
-  <script src="app.js?v=17"></script>
+  <script src="i18n.js?v=18"></script>
+  <script src="app.js?v=18"></script>
 </body>
-</html>
+  </html>

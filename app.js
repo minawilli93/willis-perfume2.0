@@ -1470,12 +1470,88 @@ function renderProducts() {
   syncWishlistUI();
 }
 
-/* "Most requested" — visible + featured products only, sorted by manual order. */
+/* Daily featured rotation.
+   The products flagged `featured` in the data (manual order) anchor the
+   starting set, adjusted once so both men's and women's fragrances are
+   always on show (a unisex bottle does not count for either): if the
+   anchors miss a gender, the last anchor of an over-represented gender
+   gives its slot to the first catalogue product of the missing one.
+   From FEATURED_ROTATION_START on, exactly one card is swapped out each
+   day (Africa/Cairo date): the slot changes round-robin, so three cards
+   stay put and one new fragrance takes the fourth one's place. The
+   replacement is the next catalogue product in manual order that keeps
+   both genders on the grid; anything already on show is skipped, and the
+   walk wraps around the catalogue so the section never runs dry. The
+   selection is derived from the date alone — no stored state, no data
+   changes. */
+const FEATURED_ROTATION_START = "2026-11-14";
+
+function cairoDayNumber(date = new Date()) {
+  let y, m, d;
+  try {
+    const parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Africa/Cairo",
+      year: "numeric", month: "2-digit", day: "2-digit"
+    }).formatToParts(date);
+    for (const part of parts) {
+      if (part.type === "year") y = Number(part.value);
+      else if (part.type === "month") m = Number(part.value);
+      else if (part.type === "day") d = Number(part.value);
+    }
+  } catch (err) {
+    y = date.getFullYear(); m = date.getMonth() + 1; d = date.getDate();
+  }
+  return Math.floor(Date.UTC(y, m - 1, d) / 86400000);
+}
+
 function featuredProducts(limit = HOMEPAGE_PREVIEW_CAP) {
-  return state.products
-    .filter(p => p.visible !== false && p.featured === true)
-    .sort((a, b) => Number(a.order || 0) - Number(b.order || 0))
-    .slice(0, limit);
+  const byOrder = state.products
+    .filter(p => p.visible !== false)
+    .sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+  const genderOf = p => {
+    const g = String(p.gender || "").toLowerCase();
+    return g === "men" ? "men" : g === "women" ? "women" : "unisex";
+  };
+  const hasMix = list =>
+    list.some(p => genderOf(p) === "men") && list.some(p => genderOf(p) === "women");
+  const current = byOrder.filter(p => p.featured === true);
+  if (!current.length) return [];
+  /* Reconcile the anchors with the always-mixed rule, one slot at most per
+     missing gender. */
+  for (const missing of ["women", "men"]) {
+    if (current.some(p => genderOf(p) === missing)) continue;
+    const replacement = byOrder.find(p => genderOf(p) === missing && !current.includes(p));
+    if (!replacement) continue;
+    const other = missing === "women" ? "men" : "women";
+    let victim = current.map(genderOf).lastIndexOf(other);
+    if (victim < 0) victim = current.length - 1;
+    current[victim] = replacement;
+  }
+  const startDay = Math.floor(Date.UTC(
+    Number(FEATURED_ROTATION_START.slice(0, 4)),
+    Number(FEATURED_ROTATION_START.slice(5, 7)) - 1,
+    Number(FEATURED_ROTATION_START.slice(8, 10))
+  ) / 86400000);
+  const swaps = Math.max(0, cairoDayNumber() - startDay);
+  let cursor = 0;
+  const nextCandidate = slot => {
+    for (let tries = 0; tries < byOrder.length; tries++) {
+      const candidate = byOrder[cursor % byOrder.length];
+      cursor++;
+      if (current.some(p => p.id === candidate.id)) continue;
+      const tentative = current.slice();
+      tentative[slot] = candidate;
+      if (hasMix(tentative)) return candidate;
+    }
+    return null;
+  };
+  for (let k = 0; k < swaps; k++) {
+    const slot = k % current.length;
+    const candidate = nextCandidate(slot);
+    if (!candidate) break;
+    current[slot] = candidate;
+  }
+  return current.slice(0, limit);
 }
 
 function renderFeatured() {
