@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7f3ec" />
+
+  <!-- ===== Primary meta ===== -->
+  <title>Willi's Perfume — Wear Your Will | Signature Fragrances Egypt</title>
+  <meta name="description" content="Willi's Perfume — discover your signature scent. Premium fragrances inspired by iconic scents, with delivery all over Egypt and cash on delivery." />
+  <meta name="author" content="Willi's Perfume" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- ===== Canonical — live domain; flip site-config.js siteUrl on launch ===== -->
+  <link rel="canonical" href="https://willis-perfume-one.vercel.app/" />
+
+  <!-- ===== Favicons ===== -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="images/icon-512.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Willi's Perfume" />
+
+  <!-- ===== Open Graph / Facebook ===== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Willi's Perfume" />
+  <meta property="og:title" content="Willi's Perfume — Wear Your Will" />
+  <meta property="og:description" content="Discover your signature scent. Premium fragrances inspired by iconic scents — delivery all over Egypt, cash on delivery." />
+  <meta property="og:url" content="https://willis-perfume-one.vercel.app/" />
+  <meta property="og:image" content="https://willis-perfume-one.vercel.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="ar_EG" />
+
+  <!-- ===== Twitter ===== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Willi's Perfume — Wear Your Will" />
+  <meta name="twitter:description" content="Discover your signature scent. Premium fragrances inspired by iconic scents — delivery all over Egypt, cash on delivery." />
+  <meta name="twitter:image" content="https://willis-perfume-one.vercel.app/images/og-image.png" />
+
+  <!-- ===== Fonts (Cairo added for Arabic / RTL) ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- ===== Structured data ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Willi's Perfume",
+    "url": "https://willis-perfume-one.vercel.app/",
+    "description": "Willi's Perfume — discover your signature scent.",
+    "inLanguage": ["en", "ar"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Willi's Perfume",
+    "url": "https://willis-perfume-one.vercel.app/",
+    "logo": "https://willis-perfume-one.vercel.app/images/logo.webp",
+    "sameAs": [
+      "https://www.instagram.com/willis_perfume/",
+      "https://www.facebook.com/profile.php?id=61590332657028"
+    ]
+  }
+  </script>
+
+  <!-- ======================================================================
+       SITE CONFIG — single source of truth for domain / GA4 / Pixel / WhatsApp.
+       Edit site-config.js, then run: node tools/generate-pages.js
+       ====================================================================== -->
+  <script src="site-config.js"></script>
+  <script>
+    /* Apply the real site domain from SITE_CONFIG to canonical / OG / JSON-LD
+       at runtime. Does nothing while siteUrl is still the placeholder. */
+    (function () {
+      var cfg = window.SITE_CONFIG || {};
+      var site = (cfg.siteUrl || "").replace(/\/+$/, "");
+      if (!site || site === "https://willis-perfume-one.vercel.app") return;
+      var swap = function (v) { return v.replace(/https:\/\/willis-perfume\.vercel\.app/g, site); };
+      var metas = document.querySelectorAll("meta");
+      var i, n, c;
+      for (i = 0; i < metas.length; i++) {
+        n = metas[i].getAttribute("property") || metas[i].getAttribute("name");
+        c = metas[i].content;
+        if (c && c.indexOf("willis-perfume-one.vercel.app") !== -1) metas[i].content = swap(c);
+      }
+      var link = document.querySelector('link[rel="canonical"]');
+      if (link && link.href && link.href.indexOf("willis-perfume-one.vercel.app") !== -1) link.href = swap(link.href);
+      var lds = document.querySelectorAll('script[type="application/ld+json"]');
+      for (i = 0; i < lds.length; i++) {
+        var txt = lds[i].textContent || "";
+        if (txt.indexOf("willis-perfume-one.vercel.app") !== -1) lds[i].textContent = swap(txt);
+      }
+    })();
+  </script>
+
+  <!-- ======================================================================
+       GOOGLE ANALYTICS (GA4) — id comes from window.SITE_CONFIG.ga4Id
+       (site-config.js). While the placeholder is present the tracker is
+       NOT loaded — no bogus analytics requests before launch.
+       ====================================================================== -->
+  <script>
+    (function () {
+      var cfg = window.SITE_CONFIG || {};
+      var id = cfg.ga4Id;
+      if (!cfg.isAnalyticsReady || !cfg.isAnalyticsReady("ga4Id")) return;
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag("js", new Date());
+      window.gtag("config", id);
+    })();
+  </script>
+
+  <!-- META PIXEL - loader and init are BOTH skipped while pixelId is still a placeholder -->
+  <script>
+    (function () {
+      var cfg = window.SITE_CONFIG || {};
+      var id = cfg.pixelId;
+      if (!cfg.isAnalyticsReady || !cfg.isAnalyticsReady("pixelId")) return;
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', id);
+      fbq('track', 'PageView');
+      var im = document.createElement("img");
+      im.height = 1; im.width = 1; im.style.display = "none"; im.alt = "";
+      im.src = "https://www.facebook.com/tr?id=" + encodeURIComponent(id) + "&ev=PageView&noscript=1";
+      document.head.appendChild(im);
+    })();
+  </script>
+</head>
+<body>
+  <div class="page-shell">
+    <div class="site-topbar">
+    <div class="announcement-bar" data-i18n="announce.text" role="note">Free shipping on orders above 1000 EGP · Cash on delivery nationwide</div>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Willi's Perfume home">
+        <img src="images/logo.webp" alt="Willi's Perfume logo" width="43" height="43">
+        <span class="brand-copy">
+          <strong>Willi’s Perfume</strong>
+          <small>WEAR YOUR WILL</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a class="active" href="#home" data-i18n="nav.home">Home</a>
+        <a href="#featured" data-i18n="nav.featured">Most Requested</a>
+        <a href="#collection" data-i18n="nav.collection">Collection</a>
+        <a href="#story" data-i18n="nav.about">About Us</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      </nav>
+
+      <div class="desktop-actions">
+        <a class="social-icon" href="https://www.instagram.com/willis_perfume/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.7" r="1" fill="currentColor"/></svg>
+        </a>
+        <a class="social-icon" href="https://www.facebook.com/profile.php?id=61590332657028" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <button class="lang-toggle" type="button" aria-label="Switch to Arabic">العربية</button>
+        <button class="cart-icon-btn" id="desktopCartBtn" aria-label="Open cart" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7.5h12l-1.1 12a1.8 1.8 0 0 1-1.8 1.6H8.9a1.8 1.8 0 0 1-1.8-1.6L6 7.5Z"/><path d="M9 10V5.8A3 3 0 0 1 12 3a3 3 0 0 1 3 2.8V10"/></svg>
+          <span class="cart-badge" id="desktopCartBadge">0</span>
+        </button>
+        <button class="desktop-whatsapp" id="desktopWhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.4-4.2A8.5 8.5 0 1 1 20.5 11.8Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.3 8.6c.2-.4.5-.5.9-.5h.6c.2 0 .4.1.5.4l.8 1.8c.1.3.1.5-.1.7l-.6.7c.7 1.2 1.6 2.1 2.9 2.8l.7-.7c.2-.2.4-.2.7-.1l1.8.8c.3.1.4.3.4.5v.6c0 .4-.2.7-.5.9-.5.3-1.2.4-1.8.2-3.4-1-5.8-3.4-6.8-6.8-.2-.6-.1-1.3.2-1.8Z" fill="currentColor"/></svg>
+          <span data-i18n="header.orderWa">Order on WhatsApp</span>
+        </button>
+      </div>
+
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" data-i18n-aria="menu.open" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+    </div>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <aside class="side-menu" id="sideMenu" aria-hidden="true">
+      <div class="menu-top">
+        <span data-i18n="menu.label">Menu</span>
+        <button class="icon-btn close-menu" id="closeMenu" aria-label="Close menu" data-i18n-aria="menu.close">×</button>
+      </div>
+      <nav>
+        <a href="#home" data-i18n="nav.home">Home</a>
+        <a href="#featured" data-i18n="nav.featured">Most Requested</a>
+        <a href="#collection" data-i18n="nav.collection">Our Collection</a>
+        <button data-gender="Men" data-i18n="gender.men">Men</button>
+        <button data-gender="Women" data-i18n="gender.women">Women</button>
+        <button data-gender="Unisex" data-i18n="gender.unisex">Unisex</button>
+      </nav>
+      <div class="menu-divider"></div>
+      <p class="menu-caption" data-i18n="menu.caption">Find a scent that feels like you.</p>
+      <button class="lang-toggle menu-lang-toggle" type="button" aria-label="Switch to Arabic">العربية</button>
+      <div class="menu-socials">
+        <a href="https://www.instagram.com/willis_perfume/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram" data-i18n="menu.instagram">Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=61590332657028" target="_blank" rel="noopener noreferrer" aria-label="Facebook" data-i18n="menu.facebook">Facebook</a>
+        <a href="#" id="menuWhatsApp" aria-label="WhatsApp" data-i18n="menu.whatsapp">WhatsApp</a>
+      </div>
+    </aside>
+
+    <main id="home">
+      <section class="hero occasion-hero" aria-label="Choose your occasion">
+        <div class="occasion-intro">
+          <div class="hero-features occasion-features">
+            <div><b>◊</b><span data-i18n-html="hero.f1">Premium<br>Quality</span></div>
+            <div><b>◇</b><span data-i18n-html="hero.f2">Inspired by<br>Iconic Scents</span></div>
+            <div><b>♕</b><span data-i18n-html="hero.f3">A Scent<br>for Every Story</span></div>
+          </div>
+          <span class="eyebrow" data-i18n="occ.eyebrow">CHOOSE YOUR OCCASION</span>
+          <h1 data-i18n-html="occ.title">A Scent for<br><em>Every Moment</em></h1>
+          <p data-i18n="occ.subtitle">Pick the occasion, and we'll show you the scents that fit it.</p>
+        </div>
+
+        <div class="occasion-grid">
+          <a class="occasion-card" href="#collection" data-occasion="everyday">
+            <div class="occasion-media">
+              <img class="occasion-scene" src="images/occasion-everyday.webp" alt="" aria-hidden="true" loading="lazy">
+              <span class="occasion-shadow" aria-hidden="true"></span>
+              <img class="occasion-bottle" src="images/bottle-fresh.webp" alt="" aria-hidden="true" loading="lazy">
+            </div>
+            <div class="occasion-info">
+              <h2 data-i18n="occ.everyday">Work &amp; Everyday</h2>
+              <p data-i18n="occ.everydaySub">Light, clean scents that stay close.</p>
+              <span class="occasion-cta"><span data-i18n="occ.shop">Shop now</span> <span class="occasion-arrow" aria-hidden="true">&rarr;</span></span>
+            </div>
+          </a>
+
+          <a class="occasion-card" href="#collection" data-occasion="evening">
+            <div class="occasion-media">
+              <img class="occasion-scene" src="images/occasion-evening.webp" alt="" aria-hidden="true" loading="lazy">
+              <span class="occasion-shadow" aria-hidden="true"></span>
+              <img class="occasion-bottle" src="images/bottle-bold.webp" alt="" aria-hidden="true" loading="lazy">
+            </div>
+            <div class="occasion-info">
+              <h2 data-i18n="occ.evening">Outings &amp; Evening</h2>
+              <p data-i18n="occ.eveningSub">Warmer, bolder scents with presence.</p>
+              <span class="occasion-cta"><span data-i18n="occ.shop">Shop now</span> <span class="occasion-arrow" aria-hidden="true">&rarr;</span></span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="featured-section hidden" id="featured" aria-label="Best sellers">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow" data-i18n="featured.eyebrow">CUSTOMER FAVORITES</span>
+            <h2 data-i18n="featured.title">Most Requested</h2>
+          </div>
+          <a class="featured-view-all" href="featured.html" data-i18n="featured.viewAll">View all &rarr;</a>
+        </div>
+        <div class="products-grid" id="featuredGrid"></div>
+      </section>
+
+      <section class="collection-section" id="collection">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow" data-i18n="coll.eyebrow">THE COLLECTION</span>
+            <h2 data-i18n="coll.title">Our Collection</h2>
+          </div>
+          <span class="count-badge" id="resultCount">25 fragrances</span>
+        </div>
+
+        <div class="quiz-banner" id="quizBanner" role="button" tabindex="0"
+          aria-label="Find your scent in 30 seconds — start the quiz">
+          <div class="quiz-banner-text">
+            <strong>🎯 <span data-i18n="quiz.bannerTitle">Find your scent in 30 seconds</span></strong>
+            <span data-i18n="quiz.bannerText">Answer 4 quick questions and we'll match you with the fragrances you'll love.</span>
+          </div>
+          <span class="quiz-banner-btn" data-i18n="quiz.bannerCta">Start the quiz</span>
+        </div>
+
+        <div class="search-wrap">
+          <span class="search-icon">⌕</span>
+          <input id="searchInput" type="search" placeholder="Search your fragrance..." data-i18n-placeholder="coll.search" autocomplete="off">
+          <button id="clearSearch" class="clear-search" aria-label="Clear search" data-i18n-aria="coll.clear">×</button>
+        </div>
+
+                <div class="occasion-active hidden" id="occasionActive" aria-live="polite"></div>
+
+        <div class="filter-row" id="genderFilters" aria-label="Filter by gender">
+          <button class="filter-chip active" data-gender="All" data-i18n="filter.all">All</button>
+          <button class="filter-chip" data-gender="Men" data-i18n="filter.men">Men</button>
+          <button class="filter-chip" data-gender="Women" data-i18n="filter.women">Women</button>
+          <button class="filter-chip" data-gender="Unisex" data-i18n="filter.unisex">Unisex</button>
+        </div>
+
+        <div class="category-row" id="categoryFilters" aria-label="Filter by category">
+          <button class="category-chip wishlist-chip" id="wishlistFilter" type="button" aria-pressed="false">♥ Favorites (0)</button>
+          <button class="category-chip active" data-category="All" data-i18n="cat.all">All styles</button>
+          <button class="category-chip" data-category="Elegant" data-i18n="cat.Elegant">Elegant</button>
+          <button class="category-chip" data-category="Summer" data-i18n="cat.Summer">Summer</button>
+          <button class="category-chip" data-category="Winter" data-i18n="cat.Winter">Winter</button>
+          <button class="category-chip" data-category="Spring" data-i18n="cat.Spring">Spring</button>
+          <button class="category-chip" data-category="Autumn" data-i18n="cat.Autumn">Autumn</button>
+          <button class="category-chip" data-category="Formal" data-i18n="cat.Formal">Formal</button>
+          <button class="category-chip" data-category="Night" data-i18n="cat.Night">Night</button>
+          <button class="category-chip" data-category="Attractive" data-i18n="cat.Attractive">Attractive</button>
+          <button class="category-chip" data-category="Luxury" data-i18n="cat.Luxury">Luxury</button>
+        </div>
+
+        <div class="sort-wrap">
+          <label for="sortSelect" data-i18n="sort.label">Sort</label>
+          <select id="sortSelect" aria-label="Sort products">
+            <option value="default" data-i18n="sort.optDefault">Default order</option>
+            <option value="price-asc" data-i18n="sort.optPriceAsc">Price: low to high</option>
+            <option value="price-desc" data-i18n="sort.optPriceDesc">Price: high to low</option>
+            <option value="name" data-i18n="sort.optName">Name A–Z</option>
+          </select>
+        </div>
+
+        <div id="products-container" class="products-grid"></div>
+
+        <div class="view-all-wrap hidden" id="viewAllWrap">
+          <a class="view-all-btn" href="collection.html" data-i18n="coll.viewAll">View all products</a>
+        </div>
+
+        <div id="emptyState" class="empty-state hidden">
+          <div>⌕</div>
+          <h3 data-i18n="coll.empty.title">No fragrance found</h3>
+          <p data-i18n="coll.empty.text">Try another name, inspired fragrance, or filter.</p>
+          <button class="secondary-btn" id="resetFilters" data-i18n="coll.empty.reset">Show all fragrances</button>
+        </div>
+      </section>
+
+      <!-- ===== Shipping & delivery ===== -->
+      <section class="shipping-section" id="shipping">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow" data-i18n="ship.eyebrow">DELIVERY & RETURNS</span>
+            <h2 data-i18n="ship.title">Shipping & Delivery</h2>
+          </div>
+        </div>
+
+        <div class="shipping-grid">
+          <div class="ship-card">
+            <span class="ship-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.8h11.5v9.2H2.5z"/><path d="M14 9.6h3.6l2.9 3.2v3.2h-6.5"/><circle cx="6.4" cy="17.2" r="1.8"/><circle cx="16.2" cy="17.2" r="1.8"/></svg>
+            </span>
+            <h3 data-i18n="ship.t1Title">Fast Delivery</h3>
+            <p data-i18n="ship.t1Text">Your order ships within 24 hours and arrives in 2–5 working days across Egypt.</p>
+          </div>
+          <div class="ship-card">
+            <span class="ship-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.2 3.2h6.7l9.7 9.8a1.7 1.7 0 0 1 0 2.4l-3.8 3.8a1.7 1.7 0 0 1-2.4 0L3.2 9.7V3.2Z"/><circle cx="8.3" cy="7.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <h3 data-i18n="ship.t2Title">Clear Pricing</h3>
+            <p data-i18n="ship.t2Text">Shipping is 35 EGP inside Cairo and 50 EGP to other governorates. Free shipping on orders above 1000 EGP.</p>
+          </div>
+          <div class="ship-card">
+            <span class="ship-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6.5" width="19" height="11" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M5.6 9.6v.01M18.4 14.4v.01"/></svg>
+            </span>
+            <h3 data-i18n="ship.t3Title">Cash on Delivery</h3>
+            <p data-i18n="ship.t3Text">Pay by cash, Vodafone Cash or InstaPay when your order arrives.</p>
+          </div>
+          <div class="ship-card">
+            <span class="ship-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 9.8A7.6 7.6 0 0 1 20 7.6"/><path d="M20.5 14.2A7.6 7.6 0 0 1 4 16.4"/><path d="M20 3.4v4.2h-4.2M4 20.6v-4.2h4.2"/></svg>
+            </span>
+            <h3 data-i18n="ship.t4Title">Easy Exchange</h3>
+            <p data-i18n="ship.t4Text">Exchange or return any product within 24 hours of receiving it — just message us on WhatsApp.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="story-section" id="story">
+        <div class="story-card">
+          <span class="eyebrow" data-i18n="story.eyebrow">WILLI’S PHILOSOPHY</span>
+          <h2 data-i18n-html="story.title">More Than<br><em>a Fragrance</em></h2>
+          <p data-i18n="story.text">A scent can become part of the way people remember you. Choose the one that feels like your signature.</p>
+          <span class="story-line"></span>
+          <strong>WEAR YOUR WILL</strong>
+        </div>
+      </section>
+
+      <!-- ===== Testimonials ===== -->
+      <section class="testimonials-section" id="testimonials">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow" data-i18n="testi.eyebrow">WORD OF MOUTH</span>
+            <h2 data-i18n="testi.title">What Our Customers Say</h2>
+          </div>
+        </div>
+
+        <div class="testimonials-grid">
+          <figure class="testimonial-card">
+            <div class="stars" role="img" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2.7l2.9 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.3l-5.8 3 1.1-6.4-4.6-4.5 6.4-.9z"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2.7l2.9 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.3l-5.8 3 1.1-6.4-4.6-4.5 6.4-.9z"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2.7l2.9 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.3l-5.8 3 1.1-6.4-4.6-4.5 6.4-.9z"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2.7l2.9 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.3l-5.8 3 1.1-6.4-4.6-4.5 6.4-.9z"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2.7l2.9 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.3l-5.8 3 1.1-6.4-4.6-4.5 6.4-.9z"/></svg>
+            </div>
+            <blockquote data-i18n="testi.t1">The White Code is exactly what I wanted — long lasting and elegant. Ordering on WhatsApp took two minutes.</blockquote>
+            <figcaption><span data-i18n="testi.n1">Ahmed S.</span></figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <div class="stars" role="img" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2.7l2.9 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.3l-5.8 3 1.1-6.4-4.6-4.5 6.4-.9z"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2.7l2.9 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.3l-5.8 3 1.1-6.4-4.6-4.5 6.4-.9z"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2.7l2.9 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.3l-5.8 3 1.1-6.4-4.6-4.5 6.4-.9z"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2.7l2.9 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.3l-5.8 3 1.1-6.4-4.6-4.5 6.4-.9z"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2.7l2.9 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.3l-5.8 3 1.1-6.4-4.6-4.5 6.4-.9z"/></svg>
+            </div>
+            <blockquote data-i18n="testi.t2">Milky Amber smells luxurious for the price. Delivery arrived in two days, beautifully packed.</blockquote>
+            <figcaption><span data-i18n="testi.n2">Nour M.</span></figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <div class="stars" role="img" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2.7l2.9 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.3l-5.8 3 1.1-6.4-4.6-4.5 6.4-.9z"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2.7l2.9 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.3l-5.8 3 1.1-6.4-4.6-4.5 6.4-.9z"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2.7l2.9 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.3l-5.8 3 1.1-6.4-4.6-4.5 6.4-.9z"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2.7l2.9 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.3l-5.8 3 1.1-6.4-4.6-4.5 6.4-.9z"/></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 2.7l2.9 5.8 6.4.9-4.6 4.5 1.1 6.4L12 17.3l-5.8 3 1.1-6.4-4.6-4.5 6.4-.9z"/></svg>
+            </div>
+            <blockquote data-i18n="testi.t3">Great service — I ordered three perfumes and they even helped me choose my scent over WhatsApp.</blockquote>
+            <figcaption><span data-i18n="testi.n3">Omar K.</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="faq-section" id="faq" aria-label="Frequently asked questions">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow" data-i18n="faq.eyebrow">GOOD TO KNOW</span>
+            <h2 data-i18n="faq.title">Frequently Asked Questions</h2>
+          </div>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary data-i18n="faq.q1">How do I order?</summary>
+            <p data-i18n="faq.a1">Choose a fragrance from the collection, add it to your cart, then press "Checkout via WhatsApp" — or message us directly on WhatsApp and we'll help you choose your size.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq.q2">How much does delivery cost?</summary>
+            <p data-i18n="faq.a2">Shipping is 35 EGP inside Cairo and 50 EGP to other governorates. It's free for orders above 1,000 EGP.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq.q3">What payment methods do you accept?</summary>
+            <p data-i18n="faq.a3">Cash on delivery, Vodafone Cash or InstaPay — just tell us your preferred method in the WhatsApp order message.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq.q4">Can I exchange or return my order?</summary>
+            <p data-i18n="faq.a4">Yes — you can exchange or return any item within 24 hours of receiving it. Just message us on WhatsApp.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq.q5">Are the fragrances original?</summary>
+            <p data-i18n="faq.a5">Yes — our fragrances are inspired by iconic scents and made with high-quality oils for a consistent, long-lasting performance.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq.q6">When will my order ship?</summary>
+            <p data-i18n="faq.a6">Orders are shipped within 24 hours, and delivery takes 2–5 working days depending on your governorate.</p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="footer">
+      <img src="images/logo.webp" alt="" class="footer-logo" width="58" height="58">
+      <h3>Willi’s Perfume</h3>
+      <p data-i18n="footer.about">Wear Your Will</p>
+      <small data-i18n="footer.rights">© 2026 Willi’s Perfume. All rights reserved.</small>
+    </footer>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <section class="product-modal" id="productModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="modal-close" id="modalClose" aria-label="Close product details" data-i18n-aria="modal.close">×</button>
+    <div class="modal-content" id="modalContent"></div>
+  </section>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <a href="#home" class="mobile-nav-item active">
+      <span>⌂</span><small data-i18n="mnav.home">Home</small>
+    </a>
+    <a href="#collection" class="mobile-nav-item">
+      <span>▦</span><small data-i18n="mnav.collection">Collection</small>
+    </a>
+    <button class="mobile-nav-item" id="cartNav" aria-label="Open cart" data-i18n-aria="cart.open">
+      <span class="mobile-cart-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7.5h12l-1.1 12a1.8 1.8 0 0 1-1.8 1.6H8.9a1.8 1.8 0 0 1-1.8-1.6L6 7.5Z"/><path d="M9 10V5.8A3 3 0 0 1 12 3a3 3 0 0 1 3 2.8V10"/></svg>
+        <span class="cart-badge" id="mobileCartBadge">0</span>
+      </span>
+      <small data-i18n="mnav.cart">Cart</small>
+    </button>
+    <button class="mobile-nav-item" id="whatsappNav">
+      <span class="nav-whatsapp-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.4-4.2A8.5 8.5 0 1 1 20.5 11.8Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.3 8.6c.2-.4.5-.5.9-.5h.6c.2 0 .4.1.5.4l.8 1.8c.1.3.1.5-.1.7l-.6.7c.7 1.2 1.6 2.1 2.9 2.8l.7-.7c.2-.2.4-.2.7-.1l1.8.8c.3.1.4.3.4.5v.6c0 .4-.2.7-.5.9-.5.3-1.2.4-1.8.2-3.4-1-5.8-3.4-6.8-6.8-.2-.6-.1-1.3.2-1.8Z" fill="currentColor"/></svg></span><small data-i18n="mnav.whatsapp">WhatsApp</small>
+    </button>
+  </nav>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="cart-head">
+      <span class="cart-title" data-i18n="cart.title">Your Cart</span>
+      <button class="icon-btn close-cart" id="closeCart" aria-label="Close cart" data-i18n-aria="cart.close">×</button>
+    </div>
+
+    <div class="cart-items-wrap">
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-empty" id="cartEmpty">
+        <span class="cart-empty-icon">▢</span>
+        <h3 data-i18n="cart.emptyTitle">Your cart is empty</h3>
+        <p data-i18n="cart.emptyText">Add a fragrance you love and it will appear here.</p>
+        <button class="secondary-btn" id="continueShopping" data-i18n="cart.continue">Continue shopping</button>
+        <div class="reorder-box hidden" id="lastOrderBox">
+          <span data-i18n="cart.lastOrder">Re-purchase your last order</span>
+          <p id="lastOrderNames"></p>
+          <button class="secondary-btn" id="reorderBtn" data-i18n="cart.reorder">Reorder last order</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-footer" id="cartFooter">
+      <div class="cart-total-line">
+        <span data-i18n="cart.total">Total</span>
+        <strong id="cartTotal">0 EGP</strong>
+      </div>
+      <button class="checkout-btn" id="checkoutBtn" data-i18n="cart.checkout">
+        Checkout via WhatsApp
+      </button>
+      <button class="clear-cart-btn" id="clearCartBtn" data-i18n="cart.clear">Clear cart</button>
+    </div>
+  </aside>
+
+  <!-- ===== PWA install banner (custom prompt; iOS gets instructions) ===== -->
+  <div class="install-banner hidden" id="installBanner" role="region" aria-label="Install the app">
+    <button type="button" class="install-banner-close" id="installDismiss" aria-label="Not now">&times;</button>
+    <img src="images/logo.webp" alt="" width="40" height="40" loading="lazy">
+    <div class="install-banner-copy">
+      <strong data-i18n="pwa.installTitle">Install the app</strong>
+      <span data-i18n="pwa.installText">Open Willi's in full screen with offline support.</span>
+    </div>
+    <button type="button" class="install-banner-btn" id="installBtn" data-i18n="pwa.install">Install App</button>
+  </div>
+
+  <div class="install-ios hidden" id="installIosModal" role="dialog" aria-modal="true" aria-label="Add to Home Screen">
+    <div class="install-ios-card">
+      <h3 data-i18n="pwa.iosTitle">Add Willi's to your Home Screen</h3>
+      <ol>
+        <li data-i18n="pwa.iosStep1">In Safari tap the Share button ▲ at the bottom</li>
+        <li data-i18n="pwa.iosStep2">Tap “Add to Home Screen”</li>
+        <li data-i18n="pwa.iosStep3">Tap “Add” at the top right</li>
+      </ol>
+      <button type="button" class="install-ios-done" id="installIosClose" data-i18n="pwa.done">Got it</button>
+    </div>
+  </div>
+
+  <div class="install-ios hidden" id="installSamsungModal" role="dialog" aria-modal="true" aria-label="Install from Chrome">
+    <div class="install-ios-card">
+      <h3 data-i18n="pwa.samsungTitle">Install from Chrome</h3>
+      <p class="install-ios-note" data-i18n="pwa.samsungText">Samsung Internet can't install the app reliably right now. Copy the link, open it in Chrome, and tap Install there.</p>
+      <button type="button" class="install-ios-done" id="installSamsungCopy" data-i18n="pwa.samsungCopy">Copy link</button>
+      <button type="button" class="install-ios-done install-ios-ghost" id="installSamsungClose" data-i18n="pwa.done">Got it</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    window.SITE_URL = (window.SITE_CONFIG && window.SITE_CONFIG.siteUrl) || "https://willis-perfume-one.vercel.app";
+  </script>
+  <script src="i18n.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
