@@ -124,6 +124,7 @@ const state = {
   products: [],
   gender: "All",
   category: "All",
+  occasion: "All",
   search: "",
   sort: "default",
   wishlistOnly: false,
@@ -1339,7 +1340,18 @@ function filteredProducts() {
     .filter(product => {
       if (!isVisible(product)) return false;
 
-      const matchesGender = state.gender === "All" || product.gender === state.gender;
+      /* Men / Women also include matching Unisex scents (agreed behaviour);
+         choosing Unisex shows Unisex only. */
+      const matchesGender =
+        state.gender === "All" ||
+        product.gender === state.gender ||
+        (state.gender !== "Unisex" && product.gender === "Unisex");
+      /* Occasion cards on the homepage: a product listed for the occasion in
+         SITE_CONFIG.occasions matches it; unlisted products are unclassified
+         and stay visible under All only, never in an occasion-specific view. */
+      const occTags = OCCASION_MAP[product.id];
+      const matchesOccasion =
+        state.occasion === "All" || (!!occTags && occTags.includes(state.occasion));
       const matchesCategory =
         state.category === "All" || (product.categories || []).includes(state.category);
       const matchesWishlist = !state.wishlistOnly || inWishlist(product.id);
@@ -1353,7 +1365,7 @@ function filteredProducts() {
         ...Object.values(product.notes || {}).flat()
       ].join(" ").toLowerCase();
 
-      return matchesGender && matchesCategory && matchesWishlist && (!query || haystack.includes(query));
+      return matchesGender && matchesCategory && matchesOccasion && matchesWishlist && (!query || haystack.includes(query));
     });
 
   return sortProducts(matches);
@@ -1421,7 +1433,7 @@ function renderProducts() {
 
   /* Homepage preview: show a curated grid, then a "view all" link to collection.html.
      Filtering (search / gender / category) shows every matching product instead. */
-  const filtering = state.search.trim() || state.gender !== "All" || state.category !== "All" || state.wishlistOnly;
+  const filtering = state.search.trim() || state.gender !== "All" || state.category !== "All" || state.occasion !== "All" || state.wishlistOnly;
   const viewAllWrap = document.getElementById("viewAllWrap");
 
   let products = allProducts;
@@ -1504,6 +1516,8 @@ function resetFilters() {
   state.search = "";
   state.sort = "default";
   state.wishlistOnly = false;
+  state.occasion = "All";
+  renderOccasionChip();
 
   const searchInput = document.getElementById("searchInput");
   if (searchInput) searchInput.value = "";
@@ -1688,6 +1702,52 @@ function initNavSpy() {
     window.addEventListener("scroll", spy, { passive: true });
   }
   spy();
+}
+
+/* ================================
+   Occasion cards (homepage opening)
+   ================================ */
+
+const OCCASION_MAP = (window.SITE_CONFIG && window.SITE_CONFIG.occasions) || {};
+
+function renderOccasionChip() {
+  const wrap = document.getElementById("occasionActive");
+  if (!wrap) return;
+  if (state.occasion === "All") {
+    wrap.classList.add("hidden");
+    wrap.innerHTML = "";
+    return;
+  }
+  wrap.classList.remove("hidden");
+  wrap.innerHTML = `
+    <span class="occasion-chip">
+      <span>${t(state.occasion === "everyday" ? "occ.showing.everyday" : "occ.showing.evening")}</span>
+      <button type="button" id="clearOccasion" aria-label="${t("occ.clear")}" title="${t("occ.clear")}">×</button>
+    </span>`;
+  wrap.querySelector("#clearOccasion").addEventListener("click", () => {
+    state.occasion = "All";
+    renderOccasionChip();
+    renderProducts();
+  });
+}
+
+function setOccasion(occasion, scrollToCollection) {
+  if (!["All", "everyday", "evening"].includes(occasion)) return;
+  state.occasion = occasion;
+  renderOccasionChip();
+  renderProducts();
+  if (scrollToCollection) {
+    document.getElementById("collection")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function initOccasion() {
+  document.querySelectorAll(".occasion-card[data-occasion]").forEach(card => {
+    card.addEventListener("click", event => {
+      event.preventDefault();
+      setOccasion(card.dataset.occasion, true);
+    });
+  });
 }
 
 function initFilters() {
@@ -2131,6 +2191,7 @@ async function loadProducts() {
 }
 
 initFilters();
+initOccasion();
 initQuiz();
 initCards();
 initMenu();
