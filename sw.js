@@ -9,7 +9,7 @@
    - Cross-origin (Google Fonts): stale-while-revalidate too.
    Bump VERSION to force a full cache refresh after every deploy.
    ============================================================ */
-const VERSION = "willis-v20";
+const VERSION = "willis-v21";
 const CACHE_NAME = "willis-static-" + VERSION;
 
 /* Core assets precached for instant offline startup */
@@ -23,11 +23,11 @@ const CORE_ASSETS = [
   "/app.js",
   "/i18n.js",
   "/site-config.js",
-  "/style.css?v=20",
+  "/style.css?v=21",
   "/mobile-fit.css",
-  "/mobile-fit.css?v=20",
-  "/app.js?v=20",
-  "/i18n.js?v=20",
+  "/mobile-fit.css?v=21",
+  "/app.js?v=21",
+  "/i18n.js?v=21",
   "/site-config.js?v=18",
   "/manifest.webmanifest",
   "/images/logo.webp",

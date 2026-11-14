@@ -4627,3 +4627,190 @@ a.contact-card:hover {
     animation: none !important;
   }
    }
+
+
+/* ================================
+   Card CTA: two-line add-to-cart
+   ================================ */
+
+.add-to-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  padding: 6px 8px;
+}
+
+.add-to-cart .atc-title {
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: .01em;
+}
+
+.add-to-cart .atc-price {
+  font-size: 10px;
+  font-weight: 600;
+  opacity: .88;
+  letter-spacing: .02em;
+}
+
+/* ================================
+   Quick size sheet (card CTA popup)
+   ================================ */
+
+.quick-size-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: rgba(18, 15, 11, .5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+
+.quick-size-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.quick-size-sheet {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  z-index: 160;
+  width: min(100%, 460px);
+  border-radius: 26px 26px 0 0;
+  border-top: 2px solid var(--gold-soft);
+  background: linear-gradient(180deg, #fffdf9 0%, #f8f2e8 100%);
+  transform: translate(-50%, 105%);
+  transition: transform .32s ease;
+  box-shadow: 0 -22px 70px rgba(0, 0, 0, .24);
+}
+
+.quick-size-sheet.open {
+  transform: translate(-50%, 0);
+}
+
+.quick-size-content {
+  padding: 26px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+}
+
+.qs-head {
+  text-align: center;
+}
+
+.qs-kicker {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  padding: 4px 12px;
+  border: 1px solid var(--gold-soft);
+  border-radius: 999px;
+  background: rgba(214, 178, 115, .14);
+}
+
+.qs-name {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 27px;
+  font-weight: 700;
+  margin: 10px 0 2px;
+  color: var(--ink);
+}
+
+.qs-inspired {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.qs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 18px 0 2px;
+}
+
+.qs-size {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 14px 6px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.qs-size:hover {
+  border-color: var(--gold-soft);
+}
+
+.qs-size.active {
+  border-color: var(--gold);
+  background: linear-gradient(180deg, #fffaf1, #fdf3e0);
+  box-shadow: 0 8px 20px rgba(125, 89, 32, .18);
+  transform: translateY(-2px);
+}
+
+.qs-size-ml {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.qs-size-ml small {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  margin-inline-start: 3px;
+  color: var(--muted);
+}
+
+.qs-size-price {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--gold-dark);
+}
+
+.qs-check {
+  position: absolute;
+  top: -8px;
+  inset-inline-end: -6px;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #bd9148, #8c6428);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(125, 89, 32, .3);
+}
+
+.qs-add {
+  margin-top: 16px;
+}
+
+@media (min-width: 700px) {
+  .quick-size-sheet {
+    top: 50%;
+    bottom: auto;
+    border-radius: 26px;
+    border: 1px solid var(--gold-soft);
+    transform: translate(-50%, calc(-50% + 40px));
+  }
+
+  .quick-size-sheet.open {
+    transform: translate(-50%, -50%);
+  }
+}

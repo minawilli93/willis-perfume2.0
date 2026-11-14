@@ -522,6 +522,14 @@ function notifyMessage(product, size) {
   })}\n\n${t("wa.name")}\n${t("wa.phone")}`;
 }
 
+/* Card WhatsApp icon: share this fragrance's site link via WhatsApp's
+   recipient chooser (no number -> chooser), not an order to the business.
+   Prefill stays minimal: fragrance name + exact product link. */
+function shareWhatsAppUrl(product) {
+  const text = `${product.brand_name}\n${productPageUrl(product)}`;
+  return `https://wa.me/?text=${encodeURIComponent(text)}`;
+}
+
 function shareMessage(product) {
   const size = getDefaultSize(product);
   return `${t("wa.shareMsg", {
@@ -1391,9 +1399,9 @@ function productCardHTML(product) {
             ${stockChip(product)}
             ${productImageTag(product, "product-image", true)}
             ${available ? `
-              <a class="quick-order-btn" href="${escapeHTML(quickOrderUrl(product))}"
-                 target="_blank" rel="noopener" aria-label="${t("modal.orderWa")}"
-                 title="${t("modal.orderWa")}">
+              <a class="quick-order-btn" href="${escapeHTML(shareWhatsAppUrl(product))}"
+                 target="_blank" rel="noopener" aria-label="${t("card.shareWa")}"
+                 title="${t("card.shareWa")}">
                 <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true">
                   <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.49.72.3 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.71.97.99-3.62-.24-.37a9.77 9.77 0 1 1 8.34 4.6zM12 2a10 10 0 0 0-8.55 15.22L2 22l4.92-1.29A10 10 0 1 0 12 2z"/>
                 </svg>
@@ -1419,7 +1427,8 @@ function productCardHTML(product) {
             <div class="card-actions">
               ${available
                 ? `<button class="add-to-cart" type="button">
-                     <span>+</span> ${t("card.addToCartFrom", { price: startPrice })}
+                     <span class="atc-title">+ ${t("card.addToCart")}</span>
+                     <span class="atc-price">${t("card.startsFrom", { price: startPrice })}</span>
                    </button>`
                 : `<button class="add-to-cart" type="button" disabled>${t("stock.out")}</button>`}
             </div>
@@ -1616,6 +1625,105 @@ function resetFilters() {
   });
 
   renderProducts();
+}
+
+/* ================================
+   Quick size sheet (card CTA)
+   Compact dedicated popup with the product's sizes; the smallest
+   size is preselected and the add button always shows its price.
+   ================================ */
+
+let quickSizeEl = null;
+let quickSizeProduct = null;
+let quickSizeSelected = null;
+
+function ensureQuickSizeSheet() {
+  if (quickSizeEl) return quickSizeEl;
+  const wrap = document.createElement("div");
+  wrap.id = "quickSizeRoot";
+  wrap.innerHTML = `
+    <div class="quick-size-backdrop" id="quickSizeBackdrop"></div>
+    <section class="quick-size-sheet" id="quickSizeSheet" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="quickSizeName">
+      <button class="modal-close" id="quickSizeClose" type="button" aria-label="${t("modal.close")}">×</button>
+      <div class="quick-size-content" id="quickSizeContent"></div>
+    </section>`;
+  document.body.appendChild(wrap);
+  quickSizeEl = wrap;
+  wrap.querySelector("#quickSizeBackdrop").addEventListener("click", closeQuickSizeSheet);
+  wrap.querySelector("#quickSizeClose").addEventListener("click", closeQuickSizeSheet);
+  return wrap;
+}
+
+function buildQuickSizeContent(product) {
+  const sizeKeys = Object.keys(product.sizes || {})
+    .sort((a, b) => (parseInt(a, 10) || 0) - (parseInt(b, 10) || 0));
+  const options = sizeKeys.map(size => {
+    const active = quickSizeSelected === size;
+    return `
+      <button type="button" class="qs-size ${active ? "active" : ""}" data-qs-size="${escapeHTML(size)}" aria-pressed="${active}">
+        <span class="qs-size-ml">${escapeHTML(size.replace("ml", ""))}<small>ML</small></span>
+        <span class="qs-size-price">${Number(product.sizes?.[size] || 0).toLocaleString()} ${currency()}</span>
+        ${active ? '<span class="qs-check" aria-hidden="true">✓</span>' : ""}
+      </button>`;
+  }).join("");
+
+  return `
+    <div class="qs-head">
+      <span class="qs-kicker">${t("modal.chooseSize")}</span>
+      <h3 class="qs-name" id="quickSizeName">${escapeHTML(product.brand_name)}</h3>
+      <p class="qs-inspired">${t("modal.inspired")} <strong>${escapeHTML(product.inspired_by)}</strong></p>
+    </div>
+    <div class="qs-grid">${options}</div>
+    <button class="add-cart-btn qs-add" id="quickSizeAdd" type="button">
+      <span>+</span> ${t("modal.addToCart", { price: Number(product.sizes?.[quickSizeSelected] || 0).toLocaleString() })}
+    </button>`;
+}
+
+function renderQuickSizeSheet() {
+  if (!quickSizeEl || !quickSizeProduct) return;
+  const content = quickSizeEl.querySelector("#quickSizeContent");
+  content.innerHTML = buildQuickSizeContent(quickSizeProduct);
+  quickSizeEl.querySelector("#quickSizeClose").setAttribute("aria-label", t("modal.close"));
+
+  content.querySelectorAll(".qs-size").forEach(btn => {
+    btn.addEventListener("click", () => {
+      quickSizeSelected = btn.dataset.qsSize;
+      renderQuickSizeSheet();
+    });
+  });
+
+  content.querySelector("#quickSizeAdd").addEventListener("click", () => {
+    const product = quickSizeProduct;
+    const size = quickSizeSelected;
+    closeQuickSizeSheet();
+    addToCart(product, size, 1);
+  });
+}
+
+function openQuickSizeSheet(product) {
+  const wrap = ensureQuickSizeSheet();
+  quickSizeProduct = product;
+  quickSizeSelected = getSmallestSize(product);
+  renderQuickSizeSheet();
+  wrap.querySelector("#quickSizeBackdrop").classList.add("open");
+  const sheet = wrap.querySelector("#quickSizeSheet");
+  sheet.classList.add("open");
+  sheet.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+  trapFocus(sheet);
+}
+
+function closeQuickSizeSheet() {
+  if (!quickSizeEl) return;
+  quickSizeEl.querySelector("#quickSizeBackdrop").classList.remove("open");
+  const sheet = quickSizeEl.querySelector("#quickSizeSheet");
+  sheet.classList.remove("open");
+  sheet.setAttribute("aria-hidden", "true");
+  untrapFocus(sheet);
+  quickSizeProduct = null;
+  if (!productModal?.classList.contains("open")) {
+    document.body.classList.remove("modal-open");
+  }
 }
 
 /* ================================
@@ -1938,13 +2046,13 @@ function handleCardClick(event) {
     return;
   }
 
-  /* Card CTA opens the size chooser (product modal); the actual
-     add-to-cart happens there after the customer picks a size. */
+  /* Card CTA opens the dedicated quick size sheet; the full product
+     modal stays on the product image tap. */
   const addButton = event.target.closest(".add-to-cart");
   if (addButton && !addButton.disabled) {
     const card = addButton.closest(".product-card");
     const product = card && state.products.find(p => p.id === card.dataset.productId);
-    if (product) openProductModal(product);
+    if (product) openQuickSizeSheet(product);
     return;
   }
 
@@ -1953,19 +2061,7 @@ function handleCardClick(event) {
     const card = quickBtn.closest(".product-card");
     const product = card && state.products.find(p => p.id === card.dataset.productId);
     if (product) {
-      const price = Number(product.sizes?.[getDefaultSize(product)] || 0);
-      analyticsEvent("InitiateCheckout", "begin_checkout", {
-        value: price,
-        currency: "EGP",
-        content_ids: [product.id],
-        content_type: "product",
-        items: [{
-          item_id: product.id,
-          item_name: product.brand_name,
-          price,
-          quantity: 1
-        }]
-      });
+      analyticsEvent("Share", "share", { content_type: "product", item_id: product.id, method: "whatsapp_card" });
     }
     return;
   }
@@ -2195,6 +2291,7 @@ modalBackdrop?.addEventListener("click", closeProductModal);
 document.addEventListener("keydown", event => {
   if (event.key !== "Escape") return;
 
+  closeQuickSizeSheet();
   closeProductModal();
   closeQuiz();
   closeCart();
@@ -2222,6 +2319,7 @@ document.addEventListener("langchange", () => {
   if (productModal?.classList.contains("open") && state.selectedProduct) {
     openProductModal(state.selectedProduct);
   }
+  if (quickSizeEl && quickSizeProduct) renderQuickSizeSheet();
 
   const pageEl = document.getElementById("productPage");
   if (pageEl && pageEl.dataset.rendered) renderPageProduct();
@@ -2427,4 +2525,4 @@ if ("serviceWorker" in navigator && (typeof location === "undefined" || location
       console.warn("Service worker registration failed:", err);
     });
   });
-    }
+     }
