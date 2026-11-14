@@ -4620,7 +4620,7 @@ a.contact-card:hover {
   cursor: pointer;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 300px) {
   .occasion-grid { grid-template-columns: 1fr; }
   .occasion-media { aspect-ratio: 5 / 4.4; }
 }
