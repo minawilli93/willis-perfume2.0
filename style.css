@@ -2476,19 +2476,11 @@ a {
 /* Add-to-cart on product cards */
 .card-actions {
   display: grid;
-  grid-template-columns: 1fr 1.55fr;
+  grid-template-columns: 1fr;
   gap: 7px;
   margin-top: 10px;
   position: relative;
   z-index: 5;
-}
-
-.card-actions .view-details {
-  margin-top: 0;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .add-to-cart {
@@ -2515,7 +2507,6 @@ a {
     gap: 6px;
   }
 
-  .card-actions .view-details,
   .add-to-cart {
     min-height: 34px;
   }
@@ -4635,4 +4626,4 @@ a.contact-card:hover {
   .occasion-shadow {
     animation: none !important;
   }
-}
+   }
