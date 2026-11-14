@@ -8,7 +8,7 @@ const I18N = {
   en: {
     "nav.home": "Home",
     "nav.collection": "Collection",
-    "nav.featured": "Most Requested",
+    "nav.featured": "Trending Now",
     "nav.about": "About Us",
     "nav.contact": "Contact",
     "header.orderWa": "Order on WhatsApp",
@@ -47,7 +47,7 @@ const I18N = {
     "occ.clear": "Clear occasion filter",
 
     "featured.eyebrow": "CUSTOMER FAVORITES",
-    "featured.title": "Most Requested",
+    "featured.title": "Trending Now",
     "featured.viewAll": "View all",
     "coll.eyebrow": "THE COLLECTION",
     "coll.title": "Our Collection",
@@ -277,7 +277,7 @@ const I18N = {
   ar: {
     "nav.home": "الرئيسية",
     "nav.collection": "المجموعة",
-    "nav.featured": "الأكثر طلبًا",
+    "nav.featured": "على الترند",
     "nav.about": "من نحن",
     "nav.contact": "تواصل معنا",
     "header.orderWa": "اطلب عبر واتساب",
@@ -316,7 +316,7 @@ const I18N = {
     "occ.clear": "إلغاء فلتر المناسبة",
 
     "featured.eyebrow": "اختيارات العملاء",
-    "featured.title": "الأكثر طلبًا",
+    "featured.title": "على الترند",
     "featured.viewAll": "عرض الكل",
     "coll.eyebrow": "المجموعة",
     "coll.title": "مجموعتنا",
