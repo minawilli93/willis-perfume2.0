@@ -203,6 +203,13 @@
 
 <div id="apiGuide" class="api-guide hidden"></div>
 
+<section id="arrivalAdmin" style="margin:16px 22px;padding:18px;background:white;border:1px solid #e8dfd0;border-radius:12px">
+<h2 style="margin-top:0">New Arrival · Weekly queue</h2>
+<p>Queue order is explicit, not inferred from catalog display order. Each fragrance gets seven days. Append new scents here after saving them in the product catalog. Visuals use matching catalog notes and a suggested palette.</p>
+<p id="arrivalStatus" role="status" aria-live="polite">Loading…</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><label for="arrivalSelect">Add fragrance</label><select id="arrivalSelect" style="max-width:100%"></select><button type="button" class="btn" id="arrivalAdd">Add to queue</button><button type="button" class="btn green" id="arrivalSave">Save queue</button><button type="button" class="btn" id="arrivalReload">Reload queue</button></div>
+<ol id="arrivalList" style="padding:0;list-style:none;max-height:420px;overflow:auto"></ol>
+</section>
 <div class="table-wrap">
   <table>
     <thead>
@@ -340,6 +347,7 @@ async function load() {
       throw err;
     }
     products = j;
+    document.dispatchEvent(new Event("willis-admin-products-loaded"));
     if (!Array.isArray(products)) throw new Error("Data is not an array");
     dataHashAtLoad = r.headers && r.headers.get ? r.headers.get("X-Data-Hash") : null;
     renderStats();
@@ -760,5 +768,7 @@ $("modalSave").addEventListener("click", () => {
 loadImages();
 load();
 </script>
+<script src="arrival-queue.js?v=23"></script>
+<script src="arrival-admin.js?v=23"></script>
 </body>
 </html>
