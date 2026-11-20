@@ -62,5 +62,6 @@ async function load(){try{const r=await fetch('/api/new-arrival',{cache:'no-stor
 document.addEventListener('willis-products-loaded',e=>{products=e.detail;render();});
 document.addEventListener('langchange',render);
 if(typeof state!=='undefined'&&Array.isArray(state.products))products=state.products;
+fetch('/api/products',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('products');return r.json();}).then(ps=>{products=ps;render();}).catch(()=>{});
 load();setInterval(render,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)render();});
 })();
