@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "exhaustion": "hold-last",
+  "selectionBasis": "user-approved catalog order, not historical addition dates",
+  "entries": [
+    {
+      "id": "chocolate-shadow",
+      "startsAt": null
+    },
+    {
+      "id": "tonka-spell",
+      "startsAt": null
+    },
+    {
+      "id": "cherry-glaze",
+      "startsAt": null
+    },
+    {
+      "id": "green-pine",
+      "startsAt": null
+    },
+    {
+      "id": "smooth-vetiver",
+      "startsAt": null
+    },
+    {
+      "id": "whiskey-cacao",
+      "startsAt": null
+    },
+    {
+      "id": "tuberose-rain",
+      "startsAt": null
+    },
+    {
+      "id": "caramel-cognac",
+      "startsAt": null
+    },
+    {
+      "id": "frozen-oak",
+      "startsAt": null
+    },
+    {
+      "id": "smoke-nectar",
+      "startsAt": null
+    },
+    {
+      "id": "coco-blossom",
+      "startsAt": null
+    },
+    {
+      "id": "evening-zest",
+      "startsAt": null
+    },
+    {
+      "id": "blue-temptation",
+      "startsAt": null
+    },
+    {
+      "id": "midnight-blaze",
+      "startsAt": null
+    },
+    {
+      "id": "sunset-cask",
+      "startsAt": null
+    },
+    {
+      "id": "ruby-dune",
+      "startsAt": null
+    },
+    {
+      "id": "twilight-knight",
+      "startsAt": null
+    },
+    {
+      "id": "dew-field",
+      "startsAt": null
+    },
+    {
+      "id": "lavender-hush",
+      "startsAt": null
+    },
+    {
+      "id": "birch-peak",
+      "startsAt": null
+    }
+  ],
+  "startOnFirstVisit": true
+}

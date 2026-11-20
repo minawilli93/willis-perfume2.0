@@ -99,6 +99,16 @@ module.exports = async function handler(req, res) {
         }
       }
 
+      // Real dates only for genuinely new products. Do not invent dates for legacy catalog.
+      const prior = cur ? JSON.parse(cur) : JSON.parse(fs.readFileSync(SEED_PATH, "utf8"));
+      const existing = new Map(prior.map(p => [p.id, p]));
+      const now = new Date().toISOString();
+      for (const p of body) {
+        const old = existing.get(p.id);
+        if (!old) p.addedAt = now;
+        else if (old.addedAt) p.addedAt = old.addedAt;
+        else delete p.addedAt;
+      }
       const json = JSON.stringify(body, null, 2) + "\n";
       const blob = await put(DATA_PATH, json, {
         access: "public",

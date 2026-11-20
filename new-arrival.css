@@ -1,0 +1,119 @@
+  /* ===== PREVIEW ONLY: New Arrival section (na-) ===== */
+  .na-section {
+    position: relative; overflow: hidden; text-align: center;
+    background: radial-gradient(ellipse 90% 60% at 50% 36%, #2c2214 0%, #181310 52%, #100d0a 100%);
+    color: #f7f3ec; padding: 36px 5vw 40px;
+  }
+  .na-leaf { position: absolute; z-index: 1; width: 26px; height: 16px; background-size: contain; background-repeat: no-repeat; opacity: .55; pointer-events: none; }
+  .na-leaf.l1 { left: 9%; top: 22%; height: 15px; background-image: url("images/leaf-gold-1.svg"); animation: naLeafDrift1 10s ease-in-out infinite; }
+  .na-leaf.l2 { right: 11%; top: 15%; width: 20px; height: 12px; background-image: url("images/leaf-gold-2.svg"); animation: naLeafDrift2 12s ease-in-out 1.4s infinite; }
+  .na-leaf.l3 { right: 19%; bottom: 26%; width: 17px; height: 10px; background-image: url("images/leaf-gold-1.svg"); animation: naLeafDrift1 13s ease-in-out 2.2s infinite; }
+  @keyframes naLeafDrift1 { 0%,100% { transform: translate(0,0) rotate(0deg) } 50% { transform: translate(9px,-13px) rotate(9deg) } }
+  @keyframes naLeafDrift2 { 0%,100% { transform: translate(0,0) rotate(0deg) } 50% { transform: translate(-11px,-9px) rotate(-8deg) } }
+  .na-eyebrow {
+    position: relative; z-index: 3; margin: 0 0 6px;
+    font: 600 11px/1 Jost, sans-serif; letter-spacing: .34em; color: #d6b273;
+  }
+  .na-title {
+    position: relative; z-index: 3; margin: 0;
+    font: 600 33px/1.12 "Cormorant Garamond", serif; color: #f7f3ec;
+  }
+  .na-stage { position: relative; z-index: 2; width: min(340px, 86vw); height: 320px; margin: 16px auto 0; }
+  .na-ring {
+    position: absolute; left: 50%; top: 50%; width: 246px; height: 246px;
+    transform: translate(-50%,-50%); border: 1px solid rgba(214,178,115,.45); border-radius: 50%;
+  }
+  .na-glow {
+    position: absolute; left: 50%; top: 52%; width: 282px; height: 282px; transform: translate(-50%,-50%);
+    background: radial-gradient(circle, rgba(214,178,115,.20) 0%, rgba(214,178,115,.05) 55%, transparent 72%);
+    border-radius: 50%;
+  }
+  .na-parallax { position: absolute; inset: 0; z-index: 3; will-change: transform; }
+  .na-sway { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-54%); transform-origin: 50% 78%;
+    display: flex; flex-direction: column; align-items: center; }
+  .na-sway img.na-bottle { height: 224px; width: auto; display: block; filter: drop-shadow(0 10px 16px rgba(0,0,0,.30)); }
+  .na-shadow {
+    width: 132px; height: 16px; margin-top: -6px;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,.5) 0%, rgba(0,0,0,.18) 48%, transparent 72%);
+    filter: blur(5px);
+  }
+
+  .na-note-in { display: block; will-change: transform; }
+  .na-badge {
+    position: absolute; z-index: 5; top: 14%; right: 6%;
+    background: linear-gradient(135deg, #d6b273, #a77a32); color: #241a0e;
+    font: 600 11px/1 Jost, sans-serif; letter-spacing: .12em;
+    padding: 6px 13px; border-radius: 999px; box-shadow: 0 4px 12px rgba(0,0,0,.35);
+  }
+  .na-note { position: absolute; z-index: 2; pointer-events: none; will-change: transform; }
+  .na-note img { display: block; width: 100%; height: auto; }
+  .na-note.n-lemon  { left: 2%;   top: 20%; width: 66px; }
+  .na-note.n-apple  { right: 1%;  top: 9%; width: 52px; }
+  .na-note.n-currant{ left: 1%;   bottom: 17%; width: 74px; }
+  .na-note.n-jasmine{ right: 1%;  bottom: 21%; width: 52px; }
+  .na-note.n-pepper { right: 27%; top: 6%; width: 26px; z-index: 4; }
+  .na-note.n-wood   { left: 20%;  bottom: 6%; width: 84px; }
+  .na-info { position: relative; z-index: 3; margin-top: 14px; }
+  .na-name { margin: 0; font: 600 italic 29px/1.15 "Cormorant Garamond", serif; color: #f7f3ec; }
+  .na-insp { margin: 6px 0 0; font: 400 13px/1.5 Jost, sans-serif; color: #b7a988; letter-spacing: .04em; }
+  .na-chips { margin-top: 10px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .na-chips span {
+    font: 500 11px/1 Jost, sans-serif; letter-spacing: .06em; color: #d6b273;
+    border: 1px solid rgba(214,178,115,.45); border-radius: 999px; padding: 5px 13px;
+  }
+  .na-price { margin: 10px 0 0; font: 400 14px/1.5 Jost, sans-serif; color: #cfc4ab; }
+  .na-price strong { color: #d6b273; font-weight: 600; }
+  .na-cta {
+    display: inline-block; margin-top: 13px;
+    background: linear-gradient(135deg, #d6b273, #a77a32); color: #241a0e;
+    font: 600 14px/1 Jost, sans-serif; letter-spacing: .05em;
+    padding: 12px 30px; border-radius: 999px; text-decoration: none;
+    box-shadow: 0 6px 16px rgba(167,122,50,.35);
+  }
+  /* entry reveal */
+  .na-eyebrow, .na-title, .na-stage, .na-info { opacity: 0; transform: translateY(18px); transition: opacity .9s ease, transform .9s ease; }
+  .na-section.na-in .na-eyebrow { opacity: 1; transform: none; }
+  .na-section.na-in .na-title { opacity: 1; transform: none; transition-delay: .12s; }
+  .na-section.na-in .na-stage { opacity: 1; transform: none; transition-delay: .26s; }
+  .na-section.na-in .na-info { opacity: 1; transform: none; transition-delay: .42s; }
+  /* preview-only: fade of the next section for placement context */
+  .pv-next { filter: saturate(.92); }
+  .pv-note { text-align: center; color: #b7a988; margin: 0; padding: 4px 0 14px; background: #f7f3ec; }
+
+  /* Background study for Birch Peak; typography sizes pending clarification. */
+  .na-section {
+    background:
+      radial-gradient(ellipse 72% 37% at 53% 39%, #f2f0e4 0%, #e5e6d8 48%, transparent 100%),
+      radial-gradient(ellipse 82% 63% at 2% 27%, #a7b99c 0%, transparent 78%),
+      linear-gradient(150deg, #e0e3d3 0%, #c4ceba 53%, #e9e7d9 100%);
+    color: #26392c;
+  }
+  .na-title, .na-name { color: #24382b; }
+  .na-eyebrow { color: #725723; }
+  .na-insp, .na-price { color: #465547; }
+  .na-price strong { color: #705421; }
+  .na-ring { border-color: rgba(126,104,54,.48); }
+  .na-glow { background: radial-gradient(circle, rgba(255,255,240,.64), rgba(244,241,214,.14) 60%, transparent 74%); }
+  .na-chips span { color: #46533c; border-color: rgba(91,109,77,.42); background: rgba(255,255,243,.25); }
+  .na-cta { box-shadow: 0 6px 16px rgba(98,92,54,.16); }
+
+  /* Typography study: all section copy, keeping a clear reading hierarchy. */
+  .na-eyebrow { font: 600 12px/1.25 Jost, sans-serif; letter-spacing: .29em; margin-bottom: 7px; }
+  .na-title { font: 700 41px/1.08 "Cormorant Garamond", serif; letter-spacing: -.025em; }
+  .na-name { font: 700 italic 37px/1.08 "Cormorant Garamond", serif; letter-spacing: -.015em; }
+  .na-insp { font: 500 14px/1.5 Jost, sans-serif; letter-spacing: .025em; }
+  .na-chips span { font: 600 12px/1.1 Jost, sans-serif; letter-spacing: .04em; padding: 6px 13px; }
+  .na-price { font: 500 16px/1.5 Jost, sans-serif; margin-top: 11px; }
+  .na-price strong { font-weight: 700; }
+  .na-cta { font: 600 16px/1.1 Jost, sans-serif; letter-spacing: .035em; padding: 13px 31px; }
+  @media(max-width: 340px) {
+    .na-title { font-size: 37px; }
+    .na-name { font-size: 34px; }
+    .na-insp { font-size: 13px; }
+  }
+
+.na-section[hidden]{display:none!important}.na-note img{object-fit:contain}.na-shadow{opacity:.24}
+@media(prefers-reduced-motion:reduce){.na-leaf{animation:none!important}.na-eyebrow,.na-title,.na-stage,.na-info{transition:none!important}}
+/* Keep the section's final action clear of the existing fixed mobile navigation. */
+.na-cta { scroll-margin-bottom: calc(100px + env(safe-area-inset-bottom, 0px)); }
+@media(max-width: 767px) { .na-section { padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px)); } }

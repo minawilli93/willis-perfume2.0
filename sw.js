@@ -9,7 +9,7 @@
    - Cross-origin (Google Fonts): stale-while-revalidate too.
    Bump VERSION to force a full cache refresh after every deploy.
    ============================================================ */
-const VERSION = "willis-v22";
+const VERSION = "willis-v23";
 const CACHE_NAME = "willis-static-" + VERSION;
 
 /* Core assets precached for instant offline startup */
@@ -74,6 +74,9 @@ self.addEventListener("fetch", event => {
     );
     return;
   }
+
+  /* Live catalog and weekly queue are never served stale from the static cache. */
+  if (url.pathname.startsWith("/api/")) { event.respondWith(fetch(req)); return; }
 
   /* Same-origin */
   if (req.mode === "navigate") {
