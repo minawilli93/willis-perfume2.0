@@ -73,6 +73,6 @@ async function load(){try{const r=await fetch('/api/new-arrival',{cache:'no-stor
 document.addEventListener('willis-products-loaded',e=>{products=e.detail;render();});
 document.addEventListener('langchange',render);
 if(typeof state!=='undefined'&&Array.isArray(state.products))products=state.products;
-fetch('/api/products',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('products');return r.json();}).then(ps=>{products=ps;cache('willis_arrival_catalog_v1',ps);render();}).catch(()=>{const saved=cached('willis_arrival_catalog_v1');if(Array.isArray(saved)){products=saved;render();}});
+fetch('/api/products',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('products');return r.json();}).then(ps=>{products=ps;cache('willis_arrival_catalog_v1',ps);render();}).catch(async()=>{const saved=cached('willis_arrival_catalog_v1');if(Array.isArray(saved)){products=saved;render();return;}try{const r=await fetch('/website_data_willis_perfume_FINAL_WITH_PRICES.json');if(r.ok){products=await r.json();render();}}catch(ignore){}});
 load();setInterval(render,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)render();});
 })();
