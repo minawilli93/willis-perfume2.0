@@ -3,6 +3,8 @@
 'use strict';
 const section=document.getElementById('newArrival');if(!section)return;
 let products=[],config=null,shownId=null,loopStarted=false;
+function cache(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(ignore){}}
+function cached(k){try{return JSON.parse(localStorage.getItem(k)||'null');}catch(ignore){return null;}}
 const palettes={
  fresh:['#e0e3d3','#c4ceba','#e9e7d9','#24382b'],
  floral:['#eee1e3','#d8c7d9','#f3e9e3','#49334c'],
@@ -67,10 +69,10 @@ function animate(){
   });requestAnimationFrame(loop);
  }loop();
 }
-async function load(){try{const r=await fetch('/api/new-arrival',{cache:'no-store'});if(!r.ok)throw Error('queue');config=await r.json();render();}catch(e){try{const r=await fetch('/new-arrival-seed.json',{cache:'no-store'});config=await r.json();render();}catch(ignore){section.hidden=true;}}}
+async function load(){try{const r=await fetch('/api/new-arrival',{cache:'no-store'});if(!r.ok)throw Error('queue');config=await r.json();cache('willis_arrival_queue_v1',config);render();}catch(e){const saved=cached('willis_arrival_queue_v1');if(saved){config=saved;render();return;}try{const r=await fetch('/new-arrival-seed.json',{cache:'no-store'});config=await r.json();render();}catch(ignore){section.hidden=true;}}}
 document.addEventListener('willis-products-loaded',e=>{products=e.detail;render();});
 document.addEventListener('langchange',render);
 if(typeof state!=='undefined'&&Array.isArray(state.products))products=state.products;
-fetch('/api/products',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('products');return r.json();}).then(ps=>{products=ps;render();}).catch(()=>{});
+fetch('/api/products',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('products');return r.json();}).then(ps=>{products=ps;cache('willis_arrival_catalog_v1',ps);render();}).catch(()=>{const saved=cached('willis_arrival_catalog_v1');if(Array.isArray(saved)){products=saved;render();}});
 load();setInterval(render,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)render();});
 })();
