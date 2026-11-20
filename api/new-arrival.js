@@ -14,12 +14,13 @@ if(initial.startOnFirstVisit&&initial.entries.length){
  initial.launchedAt=initial.entries[0].startsAt;delete initial.startOnFirstVisit;
  const txt=JSON.stringify(initial,null,2)+'\n';
  // One-time bootstrap of the approved seed only. Later changes always require PIN.
- await put(DATA,txt,{access:'public',contentType:'application/json',addRandomSuffix:false,allowOverwrite:true});
+ if(process.env.VERCEL_ENV!=='preview')await put(DATA,txt,{access:'public',contentType:'application/json',addRandomSuffix:false,allowOverwrite:true});
  return txt;
 }
 return JSON.stringify(initial);}
 async function body(req){let s='';for await(const c of req){s+=c;if(Buffer.byteLength(s)>100000)throw Error('Request too large');}return JSON.parse(s);}
 module.exports=async(req,res)=>{try{
+ if(process.env.VERCEL_ENV==='preview'&&req.method==='POST')return send(res,403,{error:'Preview queue is read-only. Use your live Dashboard.'});
  if(req.method==='POST'&&(!process.env.ADMIN_PIN||req.headers['x-admin-pin']!==process.env.ADMIN_PIN))return send(res,401,{error:'Unauthorized'});
  const raw=await read();const prior=JSON.parse(raw);
  if(req.method==='GET')return send(res,200,prior,{'X-Queue-Hash':hash(raw)});
