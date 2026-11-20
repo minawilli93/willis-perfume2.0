@@ -10,7 +10,16 @@ const palettes={
  woody:['#dedccf','#b9c4ae','#ece9d9','#2c3d2e'],
  fruity:['#f3e1d4','#d9c4b8','#f4e9dd','#533b35']};
 function palette(p){const n=JSON.stringify(p.notes||{}).toLowerCase();if(/chocolate|cacao|vanilla|caramel|tonka/.test(n))return'gourmand';if(/rose|iris|tuberose/.test(n))return'floral';if(/cherry|raspberry/.test(n))return'fruity';if(/pine tree|vetiver/.test(n))return'woody';return'fresh';}
-function assets(p){const notes=Object.values(p.notes||{}).flat().map(x=>x.toLowerCase());return Object.entries(window.WillisArrivalAssets.notes).filter(([k,v])=>v.matches.some(m=>notes.some(n=>n===m||n.includes(m)))).map(([key])=>key);}
+function assets(p){
+ const notes=Object.values(p.notes||{}).flat().map(x=>x.toLowerCase());
+ function matches(n,m){
+  if(m==='vanilla'&&n.includes('vanilla orchid'))return false;
+  if(m==='oak'&&!/(^|\W)oak(\W|$)/.test(n))return false;
+  if(m==='rose'&&!/(^|\W)rose(\W|$)/.test(n))return false;
+  return n===m||n.includes(m);
+ }
+ return Object.entries(window.WillisArrivalAssets.notes).filter(([k,v])=>v.matches.some(m=>notes.some(n=>matches(n,m)))).map(([key])=>key);
+}
 const preset={'birch-peak':['note-lemon','note-apple','note-currant','note-jasmine','note-pepper','note-wood']};
 function localized(p,key){return document.documentElement.lang==='ar'&&p.ar&&p.ar[key]?p.ar[key]:p[key];}
 function render(){
