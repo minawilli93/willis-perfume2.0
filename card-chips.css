@@ -1,0 +1,22 @@
+/* Card icon chips: smaller, lower, clear of the image notes (mobile) */
+@media (max-width: 699px) {
+  .wishlist-btn, .card-share-btn, .quick-order-btn {
+    width: 31px;
+    height: 31px;
+    border-width: 1.25px;
+    box-shadow: 0 3px 8px rgba(20, 14, 6, .3);
+  }
+  .quick-order-btn { bottom: 5px; right: 5px; }
+  .wishlist-btn { bottom: 5px; left: 5px; }
+  .card-share-btn { bottom: 40px; left: 5px; }
+  .wishlist-btn svg, .card-share-btn svg { width: 14px; height: 14px; }
+  .quick-order-btn svg { width: 18px; height: 18px; }
+  /* keep a comfortable tap target around the smaller chip */
+  .wishlist-btn::after, .card-share-btn::after, .quick-order-btn::after {
+    content: "";
+    position: absolute;
+    inset: -5px;
+  }
+  [dir="rtl"] .wishlist-btn, [dir="rtl"] .card-share-btn { left: auto; right: 5px; }
+  [dir="rtl"] .quick-order-btn { right: auto; left: 5px; }
+}
