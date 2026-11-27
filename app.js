@@ -532,9 +532,9 @@ function notifyMessage(product, size) {
   })}\n\n${t("wa.name")}\n${t("wa.phone")}`;
 }
 
-/* Card WhatsApp icon: share this fragrance's site link via WhatsApp's
-   recipient chooser (no number -> chooser), not an order to the business.
-   Prefill stays minimal: fragrance name + exact product link. */
+/* Kept for a possible return of the card share-via-WhatsApp behaviour
+   (recipient chooser, no number -> chooser). The card WhatsApp button
+   currently opens the size sheet and orders to the business instead. */
 function shareWhatsAppUrl(product) {
   const text = `${product.brand_name}\n${productPageUrl(product)}`;
   return `https://wa.me/?text=${encodeURIComponent(text)}`;
@@ -1468,13 +1468,12 @@ function productCardHTML(product) {
             ${stockChip(product)}
             ${productImageTag(product, "product-image", true)}
             ${available ? `
-              <a class="quick-order-btn" href="${escapeHTML(shareWhatsAppUrl(product))}"
-                 target="_blank" rel="noopener" aria-label="${t("card.shareWa")}"
-                 title="${t("card.shareWa")}">
+              <button type="button" class="quick-order-btn"
+                 aria-label="${t("modal.orderWa")}" title="${t("modal.orderWa")}">
                 <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true">
                   <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.49.72.3 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.71.97.99-3.62-.24-.37a9.77 9.77 0 1 1 8.34 4.6zM12 2a10 10 0 0 0-8.55 15.22L2 22l4.92-1.29A10 10 0 1 0 12 2z"/>
                 </svg>
-              </a>` : ""}
+              </button>` : ""}
 
               <button type="button" class="wishlist-btn ${liked ? "active" : ""}" data-wish-id="${escapeHTML(product.id)}" aria-pressed="${liked}" aria-label="${t(liked ? "wish.remove" : "wish.add")}">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="${liked ? "currentColor" : "none"}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1705,6 +1704,7 @@ function resetFilters() {
 let quickSizeEl = null;
 let quickSizeProduct = null;
 let quickSizeSelected = null;
+let quickSizeMode = "cart"; /* "cart" adds to cart; "order" sends the WhatsApp order message */
 
 function ensureQuickSizeSheet() {
   if (quickSizeEl) return quickSizeEl;
@@ -1743,8 +1743,10 @@ function buildQuickSizeContent(product) {
       <p class="qs-inspired">${t("modal.inspired")} <strong>${escapeHTML(product.inspired_by)}</strong></p>
     </div>
     <div class="qs-grid">${options}</div>
-    <button class="add-cart-btn qs-add" id="quickSizeAdd" type="button">
-      <span>+</span> ${t("modal.addToCart", { price: Number(product.sizes?.[quickSizeSelected] || 0).toLocaleString() })}
+    <button class="add-cart-btn qs-add ${quickSizeMode === "order" ? "qs-order" : ""}" id="quickSizeAdd" type="button">
+      <span>${quickSizeMode === "order" ? "◔" : "+"}</span> ${quickSizeMode === "order"
+        ? `${t("modal.orderWa")} — ${Number(product.sizes?.[quickSizeSelected] || 0).toLocaleString()} ${currency()}`
+        : t("modal.addToCart", { price: Number(product.sizes?.[quickSizeSelected] || 0).toLocaleString() })}
     </button>`;
 }
 
@@ -1764,14 +1766,28 @@ function renderQuickSizeSheet() {
   content.querySelector("#quickSizeAdd").addEventListener("click", () => {
     const product = quickSizeProduct;
     const size = quickSizeSelected;
+    const mode = quickSizeMode;
     closeQuickSizeSheet();
-    addToCart(product, size, 1);
+    if (mode === "order") {
+      /* Card WhatsApp button: same order message as the product page's
+         "Order on WhatsApp", with the size the customer just picked. */
+      openWhatsApp(modalOrderMessage(product, size));
+      try {
+        localStorage.setItem(LAST_ORDER_STORAGE_KEY, JSON.stringify({
+          items: [{ id: product.id, size, qty: 1 }],
+          at: Date.now()
+        }));
+      } catch (e) { /* ignore */ }
+    } else {
+      addToCart(product, size, 1);
+    }
   });
 }
 
-function openQuickSizeSheet(product) {
+function openQuickSizeSheet(product, mode = "cart") {
   const wrap = ensureQuickSizeSheet();
   quickSizeProduct = product;
+  quickSizeMode = mode;
   quickSizeSelected = getSmallestSize(product);
   renderQuickSizeSheet();
   wrap.querySelector("#quickSizeBackdrop").classList.add("open");
@@ -2125,12 +2141,15 @@ function handleCardClick(event) {
     return;
   }
 
+  /* Card WhatsApp icon opens the quick size sheet in order mode; picking
+     a size there sends the order message (same as the product page). */
   const quickBtn = event.target.closest(".quick-order-btn");
   if (quickBtn) {
     const card = quickBtn.closest(".product-card");
     const product = card && state.products.find(p => p.id === card.dataset.productId);
     if (product) {
-      analyticsEvent("Share", "share", { content_type: "product", item_id: product.id, method: "whatsapp_card" });
+      analyticsEvent("Contact", "wa_card_order_open", { content_type: "product", item_id: product.id });
+      openQuickSizeSheet(product, "order");
     }
     return;
   }
