@@ -131,6 +131,7 @@ const I18N = {
     "modal.quantity": "Quantity",
     "modal.addToCart": "Add to Cart — {price} EGP",
     "modal.orderWa": "Order on WhatsApp",
+    "modal.sendWa": "Send on WhatsApp",
     "modal.morePhotos": "View more photos",
 
     "story.eyebrow": "WILLI’S PHILOSOPHY",
@@ -403,6 +404,7 @@ const I18N = {
     "modal.quantity": "الكمية",
     "modal.addToCart": "أضف للسلة — {price} ج.م",
     "modal.orderWa": "اطلب عبر واتساب",
+    "modal.sendWa": "أرسل عبر واتساب",
     "modal.morePhotos": "عرض المزيد من الصور",
 
     "story.eyebrow": "فلسفة ويلي",
