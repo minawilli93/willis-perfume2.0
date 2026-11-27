@@ -543,11 +543,11 @@ function shareWhatsAppUrl(product) {
 function shareMessage(product, chosenSize) {
   const size = (chosenSize && product.sizes && product.sizes[chosenSize]) ? chosenSize : getDefaultSize(product);
   const sizeLabel = size.replace("ml", " ML");
-  return `${t("wa.shareMsg", {
-    name: product.brand_name,
-    price: `${sizeLabel} — ${Number(product.sizes?.[size] || 0).toLocaleString()}`,
-    currency: currency()
-  })}${productPageUrl(product, size)}`;
+  const price = Number(product.sizes?.[size] || 0).toLocaleString();
+  const lines = [`*${product.brand_name}*`];
+  if (product.inspired_by) lines.push(`Inspired by: *${product.inspired_by}*`);
+  lines.push("", `\u{1F9F4} *${sizeLabel}*`, `\u{1F4B0} *${price} ${currency()}*`, "", `\u{1F517} ${productPageUrl(product, size)}`);
+  return lines.join("\n");
 }
 
 function copyShareLink(product, size) {
