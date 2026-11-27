@@ -544,9 +544,10 @@ function shareMessage(product, chosenSize) {
   const size = (chosenSize && product.sizes && product.sizes[chosenSize]) ? chosenSize : getDefaultSize(product);
   const sizeLabel = size.replace("ml", " ML");
   const price = Number(product.sizes?.[size] || 0).toLocaleString();
-  const lines = [`*${product.brand_name}*`];
-  if (product.inspired_by) lines.push(`Inspired by: *${product.inspired_by}*`);
-  lines.push("", `\u{1F9F4} *${sizeLabel}*`, `\u{1F4B0} *${price} ${currency()}*`, "", `\u{1F517} ${productPageUrl(product, size)}`);
+  const bar = "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501";
+  const lines = [`\u2728 *${product.brand_name}* \u2728`];
+  if (product.inspired_by) lines.push(`\u{1F33F} Inspired by: *${product.inspired_by}*`);
+  lines.push(bar, `\u{1F9F4} Size: *${sizeLabel}*`, `\u{1F4B0} Price: *${price} ${currency()}*`, bar, `\u{1F449} ${productPageUrl(product, size)}`);
   return lines.join("\n");
 }
 
