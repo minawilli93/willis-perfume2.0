@@ -504,7 +504,15 @@ function analyticsEvent(pixelEvent, ga4Event, params) {
 }
 
 /* ---------- Product page URL + share / notify helpers ---------- */
-function productPageUrl(product) {
+function sizeFromUrl(product) {
+  try {
+    const q = new URLSearchParams(location.search).get("size");
+    const sizes = Object.keys(product.sizes || {});
+    return q && sizes.includes(q) ? q : null;
+  } catch (e) { return null; }
+}
+
+function productPageUrl(product, size) {
   /* Runtime share/copy links must use the domain the site is actually open on
      (the Vercel preview now, the custom domain later). A hardcoded SITE_URL
      hands the recipient a link that doesn't resolve until the custom domain
@@ -512,7 +520,9 @@ function productPageUrl(product) {
   const origin = (typeof location !== "undefined" && location.protocol !== "file:")
     ? location.origin
     : (window.SITE_URL || "");
-  return origin + "/products/" + product.id + ".html";
+  const sizeQuery = (size && size !== getDefaultSize(product) && product.sizes && product.sizes[size])
+    ? "?size=" + encodeURIComponent(size) : "";
+  return origin + "/products/" + product.id + ".html" + sizeQuery;
 }
 
 function notifyMessage(product, size) {
@@ -530,17 +540,18 @@ function shareWhatsAppUrl(product) {
   return `https://wa.me/?text=${encodeURIComponent(text)}`;
 }
 
-function shareMessage(product) {
-  const size = getDefaultSize(product);
+function shareMessage(product, chosenSize) {
+  const size = (chosenSize && product.sizes && product.sizes[chosenSize]) ? chosenSize : getDefaultSize(product);
+  const sizeLabel = size.replace("ml", " ML");
   return `${t("wa.shareMsg", {
     name: product.brand_name,
-    price: Number(product.sizes?.[size] || 0).toLocaleString(),
+    price: `${sizeLabel} — ${Number(product.sizes?.[size] || 0).toLocaleString()}`,
     currency: currency()
-  })}${productPageUrl(product)}`;
+  })}${productPageUrl(product, size)}`;
 }
 
-function copyShareLink(product) {
-  const url = productPageUrl(product);
+function copyShareLink(product, size) {
+  const url = productPageUrl(product, size);
   const done = () => showToast(t("toast.copied"));
   try {
     if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
@@ -1786,7 +1797,7 @@ function renderPageProduct() {
   }
 
   state.selectedProduct = product;
-  state.selectedSize = getDefaultSize(product);
+  state.selectedSize = sizeFromUrl(product) || getDefaultSize(product);
   state.selectedQty = 1;
   recordRecent(product);
 
@@ -2261,14 +2272,14 @@ document.addEventListener("click", event => {
   const shareWa = event.target.closest("#shareWhatsApp");
   if (shareWa) {
     const product = state.products.find(p => p.id === shareWa.dataset.productId);
-    if (product) shareToWhatsApp(shareMessage(product));
+    if (product) shareToWhatsApp(shareMessage(product, state.selectedProduct && state.selectedProduct.id === product.id ? state.selectedSize : null));
     return;
   }
 
   const copyBtn = event.target.closest("#copyLink");
   if (copyBtn) {
     const product = state.products.find(p => p.id === copyBtn.dataset.productId);
-    if (product) copyShareLink(product);
+    if (product) copyShareLink(product, state.selectedProduct && state.selectedProduct.id === product.id ? state.selectedSize : null);
     return;
   }
 
