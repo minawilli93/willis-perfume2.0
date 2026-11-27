@@ -438,28 +438,13 @@ function quickOrderUrl(product) {
   const size = getDefaultSize(product);
   const price = Number(product.sizes?.[size] || 0).toLocaleString();
 
-  const message =
-`${t("wa.header")}
-
-${t("wa.odItem", { name: product.brand_name })}
-${t("wa.odInspired", { name: product.inspired_by })}
-${t("wa.odSize", { size: size.replace("ml", " ML") })}
-${t("wa.odPrice", { price })}${waOrderFooter()}`;
+  const message = richOrderMessage(product, size);
 
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
 function modalOrderMessage(product, size) {
-  const price = Number(product.sizes?.[size] || 0).toLocaleString();
-
-  return (
-`${t("wa.header")}
-
-${t("wa.odItem", { name: product.brand_name })}
-${t("wa.odInspired", { name: product.inspired_by })}
-${t("wa.odSize", { size: size.replace("ml", " ML") })}
-${t("wa.odPrice", { price })}${waOrderFooter()}`
-  );
+  return richOrderMessage(product, size);
 }
 
 function checkoutMessage() {
@@ -603,16 +588,32 @@ function shareNameEmojis(product) {
   return [picked[0], picked[1] || picked[0]];
 }
 
-function shareMessage(product, chosenSize) {
-  const size = (chosenSize && product.sizes && product.sizes[chosenSize]) ? chosenSize : getDefaultSize(product);
+/* Rich WhatsApp block (bold name with note emojis, Inspired by, size, price)
+   shared by the share message and the order message. AR/EN labels. */
+function richProductLines(product, size) {
+  const ar = isArabic();
   const sizeLabel = size.replace("ml", " ML");
   const price = Number(product.sizes?.[size] || 0).toLocaleString();
   const bar = "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501";
   const em = shareNameEmojis(product);
   const lines = [`${em[0]} *${product.brand_name}* ${em[1]}`];
-  if (product.inspired_by) lines.push(`\u{1F4AB} Inspired by: *${product.inspired_by}*`);
-  lines.push(bar, `\u{1F9F4} Size: *${sizeLabel}*`, `\u{1F4B0} Price: *${price} ${currency()}*`, bar, `\u{1F449} ${productPageUrl(product, size)}`);
+  if (product.inspired_by) lines.push(`\u{1F4AB} ${ar ? "\u0645\u0633\u062A\u0648\u062D\u0649 \u0645\u0646" : "Inspired by"}: *${product.inspired_by}*`);
+  lines.push(bar, `\u{1F9F4} ${ar ? "\u0627\u0644\u062D\u062C\u0645" : "Size"}: *${sizeLabel}*`, `\u{1F4B0} ${ar ? "\u0627\u0644\u0633\u0639\u0631" : "Price"}: *${price} ${currency()}*`, bar);
+  return lines;
+}
+
+function shareMessage(product, chosenSize) {
+  const size = (chosenSize && product.sizes && product.sizes[chosenSize]) ? chosenSize : getDefaultSize(product);
+  const lines = richProductLines(product, size);
+  lines.push(`\u{1F449} ${productPageUrl(product, size)}`);
   return lines.join("\n");
+}
+
+/* Order message (product page "Order on WhatsApp"): same rich block, worded
+   as an order, followed by the payment / shipping / name / phone / address
+   footer. */
+function richOrderMessage(product, size) {
+  return `${t("wa.header")}\n\n${richProductLines(product, size).join("\n")}${waOrderFooter()}`;
 }
 
 function copyShareLink(product, size) {
@@ -1772,15 +1773,9 @@ function renderQuickSizeSheet() {
     const mode = quickSizeMode;
     closeQuickSizeSheet();
     if (mode === "order") {
-      /* Card WhatsApp button: same order message as the product page's
-         "Order on WhatsApp", with the size the customer just picked. */
-      openWhatsApp(modalOrderMessage(product, size));
-      try {
-        localStorage.setItem(LAST_ORDER_STORAGE_KEY, JSON.stringify({
-          items: [{ id: product.id, size, qty: 1 }],
-          at: Date.now()
-        }));
-      } catch (e) { /* ignore */ }
+      /* Card WhatsApp button: sends the rich SHARE message (not an order)
+         with the size the customer just picked. */
+      shareToWhatsApp(shareMessage(product, size));
     } else {
       addToCart(product, size, 1);
     }
