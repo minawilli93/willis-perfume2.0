@@ -1748,7 +1748,7 @@ function buildQuickSizeContent(product) {
     <div class="qs-grid">${options}</div>
     <button class="add-cart-btn qs-add ${quickSizeMode === "order" ? "qs-order" : ""}" id="quickSizeAdd" type="button">
       ${quickSizeMode === "order" ? waLogoSvg(16) : '<span>+</span>'} ${quickSizeMode === "order"
-        ? `${t("modal.orderWa")} — ${Number(product.sizes?.[quickSizeSelected] || 0).toLocaleString()} ${currency()}`
+        ? `${t("modal.sendWa")} — ${Number(product.sizes?.[quickSizeSelected] || 0).toLocaleString()} ${currency()}`
         : t("modal.addToCart", { price: Number(product.sizes?.[quickSizeSelected] || 0).toLocaleString() })}
     </button>`;
 }
