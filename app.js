@@ -540,13 +540,69 @@ function shareWhatsAppUrl(product) {
   return `https://wa.me/?text=${encodeURIComponent(text)}`;
 }
 
+/* Share message: emojis around the name come from the perfume's own notes
+   (most distinctive notes first); falls back to sparkles. */
+const SHARE_NOTE_EMOJI = [
+  [/\brose\b|damask|grasse|bulgarian|turkish rose/i, "\u{1F339}"],
+  [/strawberry|raspberry|berry|berries/i, "\u{1F353}"],
+  [/currant|cassis|\bplum\b/i, "\u{1F347}"],
+  [/cherry/i, "\u{1F352}"],
+  [/pineapple/i, "\u{1F34D}"],
+  [/\bapple|pomarose/i, "\u{1F34E}"],
+  [/\bpear\b/i, "\u{1F350}"],
+  [/peach|nectarine|apricot/i, "\u{1F351}"],
+  [/mango/i, "\u{1F96D}"],
+  [/kiwi/i, "\u{1F95D}"],
+  [/coconut/i, "\u{1F965}"],
+  [/lemon|lime|grapefruit|bergamot|citron|citrus/i, "\u{1F34B}"],
+  [/orange|mandarin|tangerine/i, "\u{1F34A}"],
+  [/peppermint|spearmint|\bmint\b/i, "\u{1F33F}"],
+  [/vanilla|ice cream|whipped cream|cream|milk|fior di latte|marshmallow/i, "\u{1F366}"],
+  [/caramel|toffee|honey|sugar|praline|cookie|jellybean|bubble gum/i, "\u{1F36F}"],
+  [/chocolate|cacao/i, "\u{1F36B}"],
+  [/coffee/i, "\u2615"],
+  [/almond|hazelnut|chestnut|tonka|amaretto/i, "\u{1F330}"],
+  [/rum|cognac|whiskey|whisky|liquor/i, "\u{1F943}"],
+  [/\btea\b/i, "\u{1F375}"],
+  [/blossom|neroli|jasmine|magnolia|ylang|gardenia|frangipani|tuberose|freesia|osmanthus|mimosa|hibiscus|peony|lotus|water lily|orchid|honeysuckle|narcissus|carnation|hyacinth|floral|white flowers|lily/i, "\u{1F338}"],
+  [/lavender|violet|iris|orris|heliotrope/i, "\u{1F337}"],
+  [/sage|basil|rosemary|thyme|herbal|green|verbena|vervain|galbanum|eucalyptus|myrtle|juniper/i, "\u{1F33F}"],
+  [/saffron|cinnamon|cardamom|spice|pepper|ginger|nutmeg|clove|anise|cumin|coriander|caraway|pimento/i, "\u{1F336}\uFE0F"],
+  [/tobacco|leather|suede/i, "\u{1F342}"],
+  [/sea notes|ozonic|marine|watery|salt|\bice\b|water/i, "\u{1F30A}"],
+  [/smoke|incense|olibanum|frankincense|myrrh|palo santo/i, "\u{1F4A8}"],
+  [/cedar|pine|fir\b|balsam fir/i, "\u{1F332}"],
+  [/sandalwood|oud|agarwood|vetiver|patchouli|oakmoss|oak moss|\bmoss\b|\boak\b|birch|guaiac|wood|teak|mahogany|ebony|papyrus/i, "\u{1FAB5}"],
+  [/amber|ambergris|benzoin|labdanum|resin|styrax|balsam|elemi/i, "\u{1F9E1}"],
+  [/musk|cashmeran|ambrette/i, "\u{1F90D}"]
+];
+
+function shareNameEmojis(product) {
+  const n = product.notes || {};
+  const all = [].concat(n.top || [], n.heart || [], n.base || []);
+  const best = new Map();
+  all.forEach(function (note) {
+    for (let i = 0; i < SHARE_NOTE_EMOJI.length; i++) {
+      if (SHARE_NOTE_EMOJI[i][0].test(note)) {
+        const e = SHARE_NOTE_EMOJI[i][1];
+        if (!best.has(e) || best.get(e) > i) best.set(e, i);
+        break;
+      }
+    }
+  });
+  const picked = Array.from(best.entries()).sort(function (a, b) { return a[1] - b[1]; }).map(function (x) { return x[0]; });
+  if (!picked.length) return ["\u2728", "\u2728"];
+  return [picked[0], picked[1] || picked[0]];
+}
+
 function shareMessage(product, chosenSize) {
   const size = (chosenSize && product.sizes && product.sizes[chosenSize]) ? chosenSize : getDefaultSize(product);
   const sizeLabel = size.replace("ml", " ML");
   const price = Number(product.sizes?.[size] || 0).toLocaleString();
   const bar = "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501";
-  const lines = [`\u2728 *${product.brand_name}* \u2728`];
-  if (product.inspired_by) lines.push(`\u{1F33F} Inspired by: *${product.inspired_by}*`);
+  const em = shareNameEmojis(product);
+  const lines = [`${em[0]} *${product.brand_name}* ${em[1]}`];
+  if (product.inspired_by) lines.push(`\u{1F4AB} Inspired by: *${product.inspired_by}*`);
   lines.push(bar, `\u{1F9F4} Size: *${sizeLabel}*`, `\u{1F4B0} Price: *${price} ${currency()}*`, bar, `\u{1F449} ${productPageUrl(product, size)}`);
   return lines.join("\n");
 }
