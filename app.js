@@ -16,6 +16,13 @@ const DATA_URL = (typeof location !== "undefined" && location.protocol === "file
 */
 const WHATSAPP_NUMBER = (window.SITE_CONFIG && window.SITE_CONFIG.whatsapp) || "";
 
+/* Solid WhatsApp logo (filled bubble with the phone cut out) — reads
+   clearly at card size, unlike the thin outline glyph. */
+const WA_LOGO_PATH = "M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z";
+function waLogoSvg(size = 18) {
+  return `<svg viewBox="0 0 448 512" width="${size}" height="${size}" fill="currentColor" aria-hidden="true"><path d="${WA_LOGO_PATH}"/></svg>`;
+}
+
 const CART_STORAGE_KEY = "willis_cart_v1";
 const WISHLIST_STORAGE_KEY = "willis_wishlist_v1";
 const LAST_ORDER_STORAGE_KEY = "willis_last_order_v1";
@@ -772,7 +779,7 @@ function buildProductDetail(product) {
     </button>
 
     <button class="whatsapp-btn" id="orderWhatsApp">
-      <span>◔</span> ${t("modal.orderWa")}
+      ${waLogoSvg(16)} ${t("modal.orderWa")}
     </button>
   ` : `
     <p class="out-note">${t("stock.out")}</p>
@@ -821,9 +828,7 @@ function buildProductDetail(product) {
         </svg>
       </button>
       <button type="button" class="share-btn" id="shareWhatsApp" data-product-id="${escapeHTML(product.id)}" aria-label="WhatsApp">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
-          <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.49.72.3 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.71.97.99-3.62-.24-.37a9.77 9.77 0 1 1 8.34 4.6zM12 2a10 10 0 0 0-8.55 15.22L2 22l4.92-1.29A10 10 0 1 0 12 2z"/>
-        </svg>
+        ${waLogoSvg(19)}
       </button>
       <button type="button" class="share-btn" id="copyLink" data-product-id="${escapeHTML(product.id)}" aria-label="${t("detail.share")}">
         <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1470,9 +1475,7 @@ function productCardHTML(product) {
             ${available ? `
               <button type="button" class="quick-order-btn"
                  aria-label="${t("modal.orderWa")}" title="${t("modal.orderWa")}">
-                <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true">
-                  <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.49.72.3 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.8 9.8 0 0 1-5-1.37l-.36-.21-3.71.97.99-3.62-.24-.37a9.77 9.77 0 1 1 8.34 4.6zM12 2a10 10 0 0 0-8.55 15.22L2 22l4.92-1.29A10 10 0 1 0 12 2z"/>
-                </svg>
+                ${waLogoSvg(22)}
               </button>` : ""}
 
               <button type="button" class="wishlist-btn ${liked ? "active" : ""}" data-wish-id="${escapeHTML(product.id)}" aria-pressed="${liked}" aria-label="${t(liked ? "wish.remove" : "wish.add")}">
@@ -1744,7 +1747,7 @@ function buildQuickSizeContent(product) {
     </div>
     <div class="qs-grid">${options}</div>
     <button class="add-cart-btn qs-add ${quickSizeMode === "order" ? "qs-order" : ""}" id="quickSizeAdd" type="button">
-      <span>${quickSizeMode === "order" ? "◔" : "+"}</span> ${quickSizeMode === "order"
+      ${quickSizeMode === "order" ? waLogoSvg(16) : '<span>+</span>'} ${quickSizeMode === "order"
         ? `${t("modal.orderWa")} — ${Number(product.sizes?.[quickSizeSelected] || 0).toLocaleString()} ${currency()}`
         : t("modal.addToCart", { price: Number(product.sizes?.[quickSizeSelected] || 0).toLocaleString() })}
     </button>`;
